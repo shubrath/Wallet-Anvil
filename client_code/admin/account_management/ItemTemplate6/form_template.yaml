@@ -2,10 +2,17 @@ container:
   type: ColumnPanel
   properties: {spacing_above: none, spacing_below: none, col_spacing: none, background: 'theme:White'}
 components:
+- name: spacer_1
+  properties: {height: 4}
+  type: Spacer
+  layout_properties: {grid_position: 'FCYAGM,SEQAZJ'}
 - name: column_panel_1
-  properties: {background: '#efeff0', col_widths: '{"YEOKCE":5,"CRWMXX":19,"ZPEYIL":12,"DCVJOG":14,"JASXHO":10}', border: '0.1px solid #f5f5f5', spacing_above: none, spacing_below: none, col_spacing: small}
+  properties: {background: '#efeff0', col_widths: '{"YEOKCE":5,"CRWMXX":15,"ZPEYIL":15,"DCVJOG":15,"JASXHO":10,"FUUZDG":10}', border: '0.1px solid #f5f5f5', spacing_above: none, spacing_below: none, col_spacing: small}
   type: ColumnPanel
-  layout_properties: {grid_position: 'BIZBTG,WFWFTW', full_width_row: true}
+  layout_properties:
+    col_widths: {}
+    grid_position: FJPVQV,XTXJLT
+    full_width_row: true
   components:
   - name: image_1
     properties: {height: 45.77777099609375, source: _/theme/account.png, spacing_above: large}
@@ -26,7 +33,7 @@ components:
   - name: label_5
     properties: {spacing_above: large, font_size: 15, bold: true}
     type: Label
-    layout_properties: {grid_position: 'TUMKWT,OYLMZC', full_width_row: true}
+    layout_properties: {grid_position: 'TUMKWT,FUUZDG', full_width_row: true}
     data_bindings:
     - {property: text, code: 'self.item[''users_usertype'']', writeback: false}
   - name: label_2
@@ -54,10 +61,6 @@ components:
     - name: link_1
       properties: {role: null, bold: false, align: left, col_widths: '', spacing_above: small, background: '', icon: 'fa:ellipsis-v', wrap_on: mobile, underline: false, font: '', col_spacing: medium, icon_align: right, foreground: '', url: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       type: Link
-      layout_properties: {x: 59, y: 16, width: 31.0417}
+      layout_properties: {x: 10, y: 9.9884033203125, width: 20.4028, grid_position: 'TUMKWT,YGVGME', full_width_row: true}
       event_bindings: {click: link_1_click}
-- name: spacer_1
-  properties: {height: 4}
-  type: Spacer
-  layout_properties: {grid_position: 'FCYAGM,SEQAZJ'}
 is_package: true
