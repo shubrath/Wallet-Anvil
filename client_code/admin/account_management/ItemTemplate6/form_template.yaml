@@ -53,14 +53,14 @@ components:
     type: XYPanel
     layout_properties: {grid_position: 'TUMKWT,JASXHO'}
     components:
-    - name: button_1
-      properties: {role: null, bold: false, align: left, spacing_above: large, background: 'theme:Primary 500', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:White', spacing_below: small, visible: false, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: view details}
-      type: Button
-      layout_properties: {grid_position: 'TUMKWT,JASXHO JRBPGZ,ANNQEQ', full_width_row: true, x: 28.9769287109375, y: 40.83331298828125, width: 242.025}
-      event_bindings: {click: button_1_click}
     - name: link_1
       properties: {role: null, bold: false, align: left, col_widths: '', spacing_above: small, background: '', icon: 'fa:ellipsis-v', wrap_on: mobile, underline: false, font: '', col_spacing: medium, icon_align: right, foreground: '', url: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       type: Link
       layout_properties: {x: 123.9698486328125, y: 21.8519, width: 20.3704, grid_position: 'TUMKWT,YGVGME', full_width_row: true}
       event_bindings: {click: link_1_click}
+    - name: button_1
+      properties: {role: null, bold: false, align: left, spacing_above: large, background: 'theme:Primary 500', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:White', spacing_below: small, visible: false, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: view details}
+      type: Button
+      layout_properties: {grid_position: 'TUMKWT,JASXHO JRBPGZ,ANNQEQ', full_width_row: true, x: 58.969970703125, y: 40.84489999999994, width: 242.014}
+      event_bindings: {click: button_1_click}
 is_package: true
