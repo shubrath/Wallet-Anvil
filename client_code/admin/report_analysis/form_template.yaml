@@ -230,7 +230,7 @@ components:
     type: Label
     layout_properties: {grid_position: 'KDMQPC,TOCEIF'}
   - type: XYPanel
-    properties: {height: 53, width: 282.33299999999997}
+    properties: {height: 53, width: 394.33299999999997}
     name: xy_panel_2
     layout_properties: {grid_position: 'KDMQPC,NAKSUZ'}
     components:
@@ -241,7 +241,7 @@ components:
     - name: label_656
       properties: {text: '', bold: true, font_size: 14, spacing_above: medium, spacing_below: small, foreground: 'theme:White'}
       type: Label
-      layout_properties: {grid_position: 'KDMQPC,NAKSUZ PISTEJ,WSBSIH', x: 152.0440673828125, y: 9.988426208496094, width: 187.245}
+      layout_properties: {grid_position: 'KDMQPC,NAKSUZ PISTEJ,WSBSIH', x: 98.0369873046875, y: 9.976852416992188, width: 187.234}
 - name: xy_panel_1
   properties: {height: 59.25}
   type: XYPanel
