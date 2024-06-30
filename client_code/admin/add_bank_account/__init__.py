@@ -106,7 +106,7 @@ class add_bank_account(add_bank_accountTemplate):
     open_form('admin.user_support',user = self.user)
 
   def link_6_copy_2_click(self, **event_args):
-    open_form("admin.admin_view_user_details",user = self.user)
+    open_form("admin.admin_add_user",user = self.user)
 
   def link_6_copy_3_click(self, **event_args):
     open_form("admin.create_admin",user = self.user)
