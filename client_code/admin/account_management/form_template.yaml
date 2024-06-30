@@ -173,19 +173,6 @@ components:
           properties: {bold: true, font_size: 25, spacing_above: none, spacing_below: none}
           type: Label
           layout_properties: {grid_position: 'UFNICA,RSKAPC'}
-      - name: card_5
-        properties: {role: card, spacing_above: small, spacing_below: small}
-        type: ColumnPanel
-        layout_properties: {grid_position: 'SRYHFS,LVJCYR', x: 361.34722900390625, y: 93.6111192703247, width: 253.032}
-        components:
-        - name: label_9
-          properties: {background: '', text: Admins, foreground: '#8a8a8a', spacing_below: none, spacing_above: none, font_size: 20, bold: true}
-          type: Label
-          layout_properties: {grid_position: 'NCNKXR,WYDQCY'}
-        - name: label_10
-          properties: {font_size: 25, bold: true, spacing_above: none, spacing_below: none}
-          type: Label
-          layout_properties: {grid_position: 'PRNLHX,IQGGQN'}
       - name: card_6
         properties: {role: card, spacing_above: small, spacing_below: small}
         type: ColumnPanel
@@ -225,7 +212,7 @@ components:
           layout_properties: {grid_position: 'FYSXES,HKLKLM'}
           event_bindings: {click: link_10_click}
       - name: card_8
-        properties: {role: card, col_widths: '', spacing_above: none, background: '', wrap_on: mobile, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '0.5px solid #f5f5f5', tooltip: ''}
+        properties: {role: card, col_widths: '{}', spacing_above: none, background: '', wrap_on: mobile, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '0.5px solid #f5f5f5', tooltip: ''}
         type: ColumnPanel
         layout_properties: {grid_position: 'CBUYOA,GPRHZV IHBXPD,QYURUJ', full_width_row: true, x: 20.289337158203125, y: 326.4004716873169, width: 1005.678518}
         components:
@@ -240,64 +227,25 @@ components:
             layout_properties: {grid_position: 'KTNWPU,OHKMGM', full_width_row: true}
             components:
             - name: label_3
-              properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: status}
+              properties: {role: null, bold: true, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: status}
               type: Label
-              layout_properties: {x: 847.4305809885263, y: 8.59375, width: 124.9826431274414}
+              layout_properties: {x: 643.7060546875, y: 9.988433837890625, width: 80.9607}
+            - name: label_7
+              properties: {role: null, bold: true, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: Role}
+              type: Label
+              layout_properties: {x: 295.7685546875, y: 8.5648193359375, width: 132.963}
             - name: label_2
               properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: Phone}
               type: Label
-              layout_properties: {x: 488.7616450195312, y: 8.5648193359375, width: 117.97}
+              layout_properties: {x: 515.7407353515626, y: 9.988433837890625, width: 117.963}
             - name: label_1
               properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: Username}
               type: Label
-              layout_properties: {x: 56.511566162109375, y: 3.761566162109375, width: 168.924}
-            - name: label_7
-              properties: {text: Role, bold: true, font_size: 15}
-              type: Label
-              layout_properties: {x: 264.79864501953125, y: 8.58795166015625, width: 132.963}
-        - name: spacer_1
-          properties: {height: 9.33331298828125}
-          type: Spacer
-          layout_properties: {grid_position: 'ATACBC,UVRVHZ'}
+              layout_properties: {x: 87.48611450195312, y: 3.761566162109375, width: 168.924}
         - name: repeating_panel_1
           properties: {item_template: admin.account_management.ItemTemplate6, border: '', spacing_above: none, spacing_below: none}
           type: RepeatingPanel
-          layout_properties: {grid_position: 'JFCNWW,XHYFFK', full_width_row: true}
-      - name: text_box_1
-        properties: {role: outlined, bold: false, align: left, placeholder: 🔎  search by username, spacing_above: small, background: white, type: text, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '2px solid #f5f5f5', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
-        type: TextBox
-        layout_properties: {grid_position: 'CBUYOA,GPRHZV HPRETO,TRHIBH TVLZDV,LYPRMO', x: 433.3333435058594, y: 263.0323863861084, width: 236.586}
-        event_bindings: {pressed_enter: text_box_1_pressed_enter}
-      - name: button_3
-        properties: {text: Add Users, icon: 'fa:user-plus', align: center, role: null, foreground: black, background: 'theme:Gray 50', bold: true}
-        type: Button
-        layout_properties: {grid_position: 'NDZXBO,NGHUJQ', x: 671.4814758300781, y: 263.0208492279053, width: 147.975}
-        event_bindings: {click: button_3_click}
-      - name: drop_down_1
-        properties:
-          role: null
-          include_placeholder: true
-          bold: true
-          align: full
-          placeholder: '   ⏳ Filter '
-          spacing_above: small
-          background: theme:Gray 50
-          underline: false
-          font: ''
-          foreground: black
-          items: [All, Active, Inactive, Hold]
-          spacing_below: none
-          visible: true
-          border: ''
-          italic: false
-          enabled: true
-          font_size: 15
-          tooltip: ''
-        type: DropDown
-        layout_properties: {grid_position: 'CBUYOA,GPRHZV HPRETO,ZBAWMA', x: 836.0185852050781, y: 263.0208492279053, width: 91.4583}
-        data_bindings:
-        - {property: tooltip, code: 'self.item['''']', writeback: false}
-        event_bindings: {change: drop_down_1_change}
+          layout_properties: {grid_position: 'JFCNWW,TLVKER', full_width_row: true}
       - type: ColumnPanel
         properties: {col_widths: '{}'}
         name: column_panel_2
@@ -323,4 +271,56 @@ components:
             properties: {text: '', bold: true, font_size: 14, spacing_above: medium, spacing_below: small, foreground: 'theme:White'}
             type: Label
             layout_properties: {grid_position: 'NMGVCA,QSUDAZ'}
+      - name: text_box_1
+        properties: {role: outlined, bold: false, align: left, placeholder: 🔎  search by username, spacing_above: small, background: white, type: text, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '2px solid #f5f5f5', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
+        type: TextBox
+        layout_properties: {grid_position: 'CBUYOA,GPRHZV HPRETO,TRHIBH TVLZDV,LYPRMO', x: 433.3333435058594, y: 252.9976863861084, width: 236.586}
+        event_bindings: {pressed_enter: text_box_1_pressed_enter}
+      - name: button_3
+        properties: {text: Add Users, icon: 'fa:user-plus', align: center, role: null, foreground: black, background: 'theme:Gray 50', bold: true}
+        type: Button
+        layout_properties: {grid_position: 'NDZXBO,NGHUJQ', x: 671.4699401855469, y: 252.9976863861084, width: 147.975}
+        event_bindings: {click: button_3_click}
+      - name: drop_down_1
+        properties:
+          role: null
+          include_placeholder: true
+          bold: true
+          align: full
+          placeholder: '   ⏳ Filter '
+          spacing_above: small
+          background: theme:Gray 50
+          underline: false
+          font: ''
+          foreground: black
+          items: [All, Active, Inactive, Hold]
+          spacing_below: none
+          visible: true
+          border: ''
+          italic: false
+          enabled: true
+          font_size: 15
+          tooltip: ''
+        type: DropDown
+        layout_properties: {grid_position: 'CBUYOA,GPRHZV HPRETO,ZBAWMA', x: 836.0185852050781, y: 252.9976863861084, width: 91.4468}
+        data_bindings:
+        - {property: tooltip, code: 'self.item['''']', writeback: false}
+        event_bindings: {change: drop_down_1_change}
+      - type: Spacer
+        properties: {height: 32}
+        name: spacer_1
+        layout_properties: {x: 265.48377990722656, y: 73.0578670501709, width: 200}
+      - name: card_5
+        properties: {role: card, spacing_above: small, spacing_below: small}
+        type: ColumnPanel
+        layout_properties: {grid_position: 'SRYHFS,LVJCYR', x: 361.3426208496094, y: 92.2454, width: 253.021}
+        components:
+        - name: label_9
+          properties: {background: '', text: Admins, foreground: '#8a8a8a', spacing_below: none, spacing_above: none, font_size: 20, bold: true}
+          type: Label
+          layout_properties: {grid_position: 'NCNKXR,WYDQCY'}
+        - name: label_10
+          properties: {font_size: 25, bold: true, spacing_above: none, spacing_below: none}
+          type: Label
+          layout_properties: {grid_position: 'PRNLHX,IQGGQN'}
 is_package: true

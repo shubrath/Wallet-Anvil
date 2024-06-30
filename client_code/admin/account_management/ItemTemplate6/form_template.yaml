@@ -7,7 +7,7 @@ components:
   type: Spacer
   layout_properties: {grid_position: 'FCYAGM,SEQAZJ'}
 - name: column_panel_1
-  properties: {background: '#efeff0', col_widths: '{"YEOKCE":5,"CRWMXX":15,"ZPEYIL":15,"DCVJOG":15,"JASXHO":10,"FUUZDG":10}', border: '0.1px solid #f5f5f5', spacing_above: none, spacing_below: none, col_spacing: small}
+  properties: {background: '#efeff0', col_widths: '{"YEOKCE":5,"CRWMXX":15,"ZPEYIL":15,"JASXHO":15,"BJZXQT":10}', border: '0.1px solid #f5f5f5', spacing_above: none, spacing_below: none, col_spacing: small}
   type: ColumnPanel
   layout_properties:
     col_widths: {}
@@ -27,17 +27,17 @@ components:
   - name: label_4
     properties: {role: null, bold: false, align: left, spacing_above: none, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: ''}
     type: Label
-    layout_properties: {grid_position: 'TUMKWT,CRWMXX FYEGGD,TCNERU', full_width_row: true}
+    layout_properties: {grid_position: 'TUMKWT,CRWMXX FYEGGD,LUKMDQ', full_width_row: true}
     data_bindings:
     - {property: text, code: 'self.item[''users_email'']', writeback: false}
   - name: label_5
-    properties: {spacing_above: large, font_size: 15, bold: true}
+    properties: {role: null, bold: true, align: center, spacing_above: large, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: ''}
     type: Label
-    layout_properties: {grid_position: 'TUMKWT,FUUZDG', full_width_row: true}
+    layout_properties: {grid_position: 'TUMKWT,BJZXQT', full_width_row: true}
     data_bindings:
     - {property: text, code: 'self.item[''users_usertype'']', writeback: false}
   - name: label_2
-    properties: {bold: true, spacing_above: large, font_size: 15}
+    properties: {role: null, bold: true, align: center, spacing_above: large, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: ''}
     type: Label
     layout_properties: {grid_position: 'TUMKWT,ZPEYIL', full_width_row: true}
     data_bindings:
@@ -45,7 +45,7 @@ components:
   - name: label_3
     properties: {role: null, bold: true, align: left, spacing_above: large, background: '', icon: 'fa:dot-circle-o', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: 15, tooltip: '', text: ''}
     type: Label
-    layout_properties: {grid_position: 'TUMKWT,DCVJOG', full_width_row: true}
+    layout_properties: {grid_position: 'TUMKWT,QJQOFL', full_width_row: true}
     data_bindings:
     - {property: tag, code: 'self.item[''users_inactive'']', writeback: false}
   - name: xy_panel_1
@@ -56,11 +56,11 @@ components:
     - name: button_1
       properties: {role: null, bold: false, align: left, spacing_above: large, background: 'theme:Primary 500', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:White', spacing_below: small, visible: false, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: view details}
       type: Button
-      layout_properties: {grid_position: 'TUMKWT,JASXHO JRBPGZ,ANNQEQ', full_width_row: true, x: 65, y: 30.979200000000006, width: 242.042}
+      layout_properties: {grid_position: 'TUMKWT,JASXHO JRBPGZ,ANNQEQ', full_width_row: true, x: 28.9769287109375, y: 40.83331298828125, width: 242.025}
       event_bindings: {click: button_1_click}
     - name: link_1
       properties: {role: null, bold: false, align: left, col_widths: '', spacing_above: small, background: '', icon: 'fa:ellipsis-v', wrap_on: mobile, underline: false, font: '', col_spacing: medium, icon_align: right, foreground: '', url: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: ''}
       type: Link
-      layout_properties: {x: 10, y: 9.9884033203125, width: 20.4028, grid_position: 'TUMKWT,YGVGME', full_width_row: true}
+      layout_properties: {x: 123.9698486328125, y: 21.8519, width: 20.3704, grid_position: 'TUMKWT,YGVGME', full_width_row: true}
       event_bindings: {click: link_1_click}
 is_package: true
