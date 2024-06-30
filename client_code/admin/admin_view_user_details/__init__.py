@@ -480,3 +480,15 @@ class admin_view_user_details(admin_view_user_detailsTemplate):
     def link_4_click(self, **event_args):
       """This method is called when the link is clicked"""
       open_form('admin.admin_add_user',user=self.admin)
+
+    def link6_copy_click(self, **event_args):
+      open_form("admin.transaction_monitoring",user = self.user)
+
+    def link6_copy_2_click(self, **event_args):
+      open_form("admin.create_admin",user = self.user)
+
+    def link6_copy_4_click(self, **event_args):
+      open_form("admin.user_support",user = self.user)
+
+    def link6_copy_5_click(self, **event_args):
+      open_form("admin.add_bank_account",user = self.user)

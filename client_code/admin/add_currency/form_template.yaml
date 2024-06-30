@@ -4,12 +4,12 @@ container:
   properties: {tooltip: '', background: '', foreground: '', border: '', visible: true, role: null, html: ''}
 components:
 - type: ColumnPanel
-  properties: {role: card, col_widths: '{"JNNYLP":10,"AXWACX":36,"GVCBXO":55,"JUSJXK":5}'}
+  properties: {role: card, col_widths: '{"JNNYLP":15,"AXWACX":41,"GVCBXO":55,"JUSJXK":5}'}
   name: card_1
   layout_properties: {slot: default}
   components:
   - name: card_1_copy
-    properties: {role: card, col_widths: '{}'}
+    properties: {role: card, col_widths: '{}', spacing_above: small, background: '', wrap_on: mobile, col_spacing: medium, foreground: '', spacing_below: small, visible: true, border: '', tooltip: ''}
     type: ColumnPanel
     layout_properties: {grid_position: 'BKVPBL,JNNYLP', full_width_row: true}
     components:
@@ -105,7 +105,26 @@ components:
             text: |
               Transaction Monitoring
           type: Label
-          layout_properties: {x: 95, y: 0, width: 153.625}
+          layout_properties: {x: 95, y: 0, width: 171.625}
+    - name: link_6_copy
+      properties: {text: '', align: center, bold: true}
+      type: Link
+      layout_properties: {grid_position: 'YLXWDH,CFHGUV'}
+      event_bindings: {click: link_6_click}
+      components:
+      - name: xy_panel_7_copy
+        properties: {height: 25.79998779296875}
+        type: XYPanel
+        layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+        components:
+        - name: label_3_copy_4_copy
+          properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Add Currency}
+          type: Label
+          layout_properties: {x: 94.98843002319336, y: 0, width: 117.593}
+        - name: image_4_copy_5_copy
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/circle.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 0.995391845703125, width: 46.9907}
     - name: link_7_copy
       properties: {text: '', align: center, bold: true}
       type: Link
@@ -117,14 +136,14 @@ components:
         type: XYPanel
         layout_properties: {grid_position: 'WSDGDY,LLGXOK'}
         components:
-        - name: image_4_copy_3
-          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 28.79998779296875}
-          type: Image
-          layout_properties: {x: 38, y: 10, width: 47}
         - name: label_3_copy_2
           properties: {text: User Management}
           type: Label
           layout_properties: {x: 95, y: 0, width: 127.22500610351562}
+        - name: image_4_copy_3
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 28.79998779296875}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 6.192100000000039, width: 46.9907}
     - name: link_5_copy
       properties: {text: '', align: center, bold: true}
       type: Link
@@ -144,35 +163,69 @@ components:
           properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/financial-audit.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
           type: Image
           layout_properties: {x: 38, y: 1, width: 47}
-    - name: link_6_copy
+    - name: link_6_copy_5
       properties: {text: '', align: center, bold: true}
       type: Link
-      layout_properties: {grid_position: 'SZPVXF,EAZPND'}
-      event_bindings: {click: link_6_click}
+      layout_properties:
+        col_widths: {}
+        grid_position: SORCNU,VGWHLH
       components:
-      - name: xy_panel_7_copy
+      - name: xy_panel_7_copy_5
         properties: {height: 25.79998779296875}
         type: XYPanel
         layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
         components:
-        - name: label_3_copy_4_copy
+        - name: label_3_copy_4_copy_5
+          properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Create Admin}
+          type: Label
+          layout_properties: {x: 94.98843002319336, y: 0, width: 117.593}
+        - name: image_4_copy_5_copy_5
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/add-user_15714241.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 0.995361328125, width: 46.9907}
+      event_bindings: {click: link_6_copy_5_click}
+    - name: link_6_copy_4
+      properties: {text: '', align: center, bold: true}
+      type: Link
+      layout_properties:
+        col_widths: {}
+        grid_position: HFICCY,NTRLWU
+      components:
+      - name: xy_panel_7_copy_4
+        properties: {height: 25.79998779296875}
+        type: XYPanel
+        layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+        components:
+        - name: label_3_copy_4_copy_4
           properties: {text: user support}
           type: Label
           layout_properties: {x: 95, y: 0, width: 117.5999755859375}
-        - name: image_4_copy_5_copy
+        - name: image_4_copy_5_copy_4
           properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer-service.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
           type: Image
           layout_properties: {x: 38, y: 1, width: 47}
-    - name: spacer_1_copy
-      properties: {height: 320.3999938964844}
-      type: Spacer
-      layout_properties: {grid_position: 'ZCYDZV,VFTIPP'}
-    - name: link_9_copy
-      properties: {text: '', align: center, bold: true, icon: ''}
+      event_bindings: {click: link_6_copy_4_click}
+    - name: link_6_copy_6
+      properties: {text: '', align: center, bold: true}
       type: Link
-      layout_properties: {grid_position: 'EOQMMT,GLFTQZ'}
-      event_bindings: {click: link_9_click}
-      components: []
+      layout_properties:
+        col_widths: {}
+        grid_position: CGDKHX,VACOIU
+      components:
+      - name: xy_panel_7_copy_6
+        properties: {height: 25.79998779296875}
+        type: XYPanel
+        layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+        components:
+        - name: label_3_copy_4_copy_6
+          properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Add Bank Names}
+          type: Label
+          layout_properties: {x: 94.98843002319336, y: 0, width: 117.593}
+        - name: image_4_copy_5_copy_6
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/bank (1).png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 0.995361328125, width: 46.9907}
+      event_bindings: {click: link_6_copy_6_click}
   - name: label_1_copy
     properties: {role: null, bold: true, align: center, spacing_above: small, background: '#1d86da', icon: '', underline: false, font: '', icon_align: left, foreground: white, spacing_below: small, visible: true, border: '', italic: true, font_size: 24, tooltip: '', text: Add Currency}
     type: Label
@@ -255,3 +308,39 @@ components:
     properties: {item_template: admin.add_currency.ItemTemplate8}
     type: RepeatingPanel
     layout_properties: {grid_position: 'BKVPBL,AXWACX JTNDIN,WKCXPY'}
+- name: link_6_copy_2
+  properties: {text: '', align: center, bold: true}
+  type: Link
+  layout_properties: {grid_position: 'SZPVXF,EAZPND'}
+  components:
+  - name: xy_panel_7_copy_2
+    properties: {height: 25.79998779296875}
+    type: XYPanel
+    layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+    components:
+    - name: label_3_copy_4_copy_2
+      properties: {text: user support}
+      type: Label
+      layout_properties: {x: 95, y: 0, width: 117.5999755859375}
+    - name: image_4_copy_5_copy_2
+      properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer-service.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+      type: Image
+      layout_properties: {x: 38, y: 1, width: 47}
+- name: link_6_copy_3
+  properties: {text: '', align: center, bold: true}
+  type: Link
+  layout_properties: {grid_position: 'SZPVXF,EAZPND'}
+  components:
+  - name: xy_panel_7_copy_3
+    properties: {height: 25.79998779296875}
+    type: XYPanel
+    layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+    components:
+    - name: label_3_copy_4_copy_3
+      properties: {text: user support}
+      type: Label
+      layout_properties: {x: 95, y: 0, width: 117.5999755859375}
+    - name: image_4_copy_5_copy_3
+      properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer-service.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+      type: Image
+      layout_properties: {x: 38, y: 1, width: 47}

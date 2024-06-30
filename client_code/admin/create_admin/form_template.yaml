@@ -105,7 +105,7 @@ components:
             text: |
               Transaction Monitoring
           type: Label
-          layout_properties: {x: 95, y: 0, width: 153.625}
+          layout_properties: {x: 95, y: 0, width: 164.625}
     - name: link_10_copy
       properties: {text: '', bold: true, align: center}
       type: Link
@@ -125,6 +125,27 @@ components:
           properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Add Currency}
           type: Label
           layout_properties: {x: 95, y: 0, width: 112.3523}
+    - name: link_5_copy_2
+      properties: {text: '', align: center, bold: true}
+      type: Link
+      layout_properties:
+        col_widths: {}
+        grid_position: VULUXL,EEQZXT
+      components:
+      - name: xy_panel_7_copy_2
+        properties: {height: 25.79998779296875}
+        type: XYPanel
+        layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+        components:
+        - name: label_3_copy_4_copy_2
+          properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: User Management}
+          type: Label
+          layout_properties: {x: 94.98843002319336, y: 0, width: 135.3409}
+        - name: image_4_copy_5_copy_2
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 0.995361328125, width: 46.9907}
+      event_bindings: {click: link_5_copy_2_click}
     - name: link_5_copy
       properties: {text: '', align: center, bold: true}
       type: Link
@@ -144,16 +165,69 @@ components:
           properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/financial-audit.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
           type: Image
           layout_properties: {x: 38, y: 1, width: 47}
-    - name: spacer_1_copy_copy_2
-      properties: {height: 204.5999755859375}
-      type: Spacer
-      layout_properties: {grid_position: 'ZCYDZV,VFTIPP'}
-    - name: link_9_copy
-      properties: {text: '', align: center, bold: true, icon: ''}
+    - name: link_5_copy_3
+      properties: {text: '', align: center, bold: true}
       type: Link
-      layout_properties: {grid_position: 'EOQMMT,GLFTQZ'}
-      event_bindings: {click: link_9_click}
-      components: []
+      layout_properties:
+        col_widths: {}
+        grid_position: DVMEUD,TFTTGD
+      components:
+      - name: xy_panel_7_copy_3
+        properties: {height: 25.79998779296875}
+        type: XYPanel
+        layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+        components:
+        - name: label_3_copy_4_copy_3
+          properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Create Admin}
+          type: Label
+          layout_properties: {x: 94.98843002319336, y: 0, width: 106.3409}
+        - name: image_4_copy_5_copy_3
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/add-user_15714241.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 0.995361328125, width: 46.9907}
+      event_bindings: {click: link_5_copy_3_click}
+    - name: link_5_copy_4
+      properties: {text: '', align: center, bold: true}
+      type: Link
+      layout_properties:
+        col_widths: {}
+        grid_position: VEYHNN,XGLMOV
+      components:
+      - name: xy_panel_7_copy_4
+        properties: {height: 25.79998779296875}
+        type: XYPanel
+        layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+        components:
+        - name: label_3_copy_4_copy_4
+          properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Users Support}
+          type: Label
+          layout_properties: {x: 94.98843002319336, y: 0, width: 119.3409}
+        - name: image_4_copy_5_copy_4
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer-service.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 0.99542236328125, width: 46.9907}
+      event_bindings: {click: link_5_copy_4_click}
+    - name: link_5_copy_5
+      properties: {text: '', align: center, bold: true}
+      type: Link
+      layout_properties:
+        col_widths: {}
+        grid_position: HXRHIG,VVUERT
+      components:
+      - name: xy_panel_7_copy_5
+        properties: {height: 25.79998779296875}
+        type: XYPanel
+        layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+        components:
+        - name: label_3_copy_4_copy_5
+          properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Add Bank names}
+          type: Label
+          layout_properties: {x: 94.98843002319336, y: 0, width: 135.3409}
+        - name: image_4_copy_5_copy_5
+          properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/bank (1).png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+          type: Image
+          layout_properties: {x: 37.99768829345703, y: 0.995361328125, width: 46.9907}
+      event_bindings: {click: link_5_copy_5_click}
   - name: label_1_copy
     properties: {role: null, bold: true, align: center, spacing_above: small, background: '#1d86da', icon: '', underline: false, font: '', icon_align: left, foreground: white, spacing_below: small, visible: true, border: '', italic: true, font_size: 20, tooltip: '', text: Create Admin Account}
     type: Label
@@ -258,10 +332,6 @@ components:
       type: Button
       layout_properties: {row: IAVNQX, width_xs: 10, col_xs: 1}
       event_bindings: {click: button_1_click}
-  - name: spacer_1
-    properties: {height: 10.39996337890625}
-    type: Spacer
-    layout_properties: {grid_position: 'RQWOFJ,QIHZMR'}
   - name: outlined_card_1_copy
     properties: {role: null, col_widths: '{"VMILPR":8,"FDANOO":15,"HAKDVS":13,"XVKBKL":12}', spacing_above: none, background: '#2270ad', wrap_on: mobile, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
     type: ColumnPanel

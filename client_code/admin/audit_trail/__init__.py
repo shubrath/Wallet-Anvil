@@ -390,5 +390,13 @@ class audit_trail(audit_trailTemplate):
       """This method is called when the link is clicked"""
       open_form('admin.add_currency',user=self.user)
 
+    def link_5_copy_click(self, **event_args):
+      open_form("admin.create_admin",user = self.user)
+
+    def link_5_copy_2_click(self, **event_args):
+      open_form("admin.user_support",user = self.user)
+
+    def link_5_copy_3_click(self, **event_args):
+      open_form("admin.add_bank_account",user = self.user)
     
 

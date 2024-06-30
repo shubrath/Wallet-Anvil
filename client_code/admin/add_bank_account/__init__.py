@@ -11,9 +11,11 @@ from anvil.tables import app_tables
 
 
 class add_bank_account(add_bank_accountTemplate):
-  def __init__(self, **properties):
+  def __init__(self,user=None, **properties):
+   
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.user = user
     self.flow_panel_1.visible = False
     self.refresh_users()
 
@@ -101,5 +103,14 @@ class add_bank_account(add_bank_accountTemplate):
 
   def link_6_click(self, **event_args):
     """This method is called when the link is clicked"""
-    open_form('admin.user_support')
+    open_form('admin.user_support',user = self.user)
+
+  def link_6_copy_2_click(self, **event_args):
+    open_form("admin.admin_view_user_details",user = self.user)
+
+  def link_6_copy_3_click(self, **event_args):
+    open_form("admin.create_admin",user = self.user)
+
+  def link_6_copy_4_click(self, **event_args):
+     open_form("admin.add_bank_account",user = self.user)
     

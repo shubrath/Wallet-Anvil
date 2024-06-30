@@ -110,7 +110,7 @@ components:
               text: |
                 Transaction Monitoring
             type: Label
-            layout_properties: {x: 95, y: 0, width: 153.625}
+            layout_properties: {x: 95, y: 0, width: 169.625}
       - name: link_10
         properties: {text: '', bold: true, align: center}
         type: Link
@@ -130,6 +130,27 @@ components:
             properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Add Currency}
             type: Label
             layout_properties: {x: 95, y: 0, width: 112.3523}
+      - name: link_6_copy_2
+        properties: {text: '', align: center, bold: true}
+        type: Link
+        layout_properties:
+          col_widths: {}
+          grid_position: UONGUX,LWXJHZ
+        components:
+        - name: xy_panel_7_copy_2
+          properties: {height: 25.79998779296875}
+          type: XYPanel
+          layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+          components:
+          - name: label_3_copy_4_copy_2
+            properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: User Management}
+            type: Label
+            layout_properties: {x: 94.98843002319336, y: 0, width: 145.5999755859375}
+          - name: image_4_copy_5_copy_2
+            properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+            type: Image
+            layout_properties: {x: 37.99768829345703, y: 0.995391845703125, width: 46.9907}
+        event_bindings: {click: link_6_copy_2_click}
       - name: link_5_copy
         properties: {text: '', align: center, bold: true}
         type: Link
@@ -149,6 +170,27 @@ components:
             properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/financial-audit.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
             type: Image
             layout_properties: {x: 38, y: 1, width: 47}
+      - name: link_6_copy_3
+        properties: {text: '', align: center, bold: true}
+        type: Link
+        layout_properties:
+          col_widths: {}
+          grid_position: JZAOQY,JOUCVS
+        components:
+        - name: xy_panel_7_copy_3
+          properties: {height: 25.79998779296875}
+          type: XYPanel
+          layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+          components:
+          - name: label_3_copy_4_copy_3
+            properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Create Admin}
+            type: Label
+            layout_properties: {x: 94.98843002319336, y: 0, width: 117.593}
+          - name: image_4_copy_5_copy_3
+            properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/add-user_15714241.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+            type: Image
+            layout_properties: {x: 37.99768829345703, y: 0.995361328125, width: 46.9907}
+        event_bindings: {click: link_6_copy_3_click}
       - name: link_6_copy
         properties: {text: '', align: center, bold: true}
         type: Link
@@ -168,15 +210,27 @@ components:
             properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/customer-service.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
             type: Image
             layout_properties: {x: 38, y: 1, width: 47}
-      - name: spacer_1_copy
-        properties: {height: 450}
-        type: Spacer
-        layout_properties: {grid_position: 'TIADAD,MJVYJD'}
-      - name: link_9_copy
-        properties: {text: '', align: center, bold: true, icon: ''}
+      - name: link_6_copy_4
+        properties: {text: '', align: center, bold: true}
         type: Link
-        layout_properties: {grid_position: 'EOQMMT,GLFTQZ'}
-        event_bindings: {click: link_9_click}
+        layout_properties:
+          col_widths: {}
+          grid_position: EHCGWA,IDVZQP
+        components:
+        - name: xy_panel_7_copy_4
+          properties: {height: 25.79998779296875}
+          type: XYPanel
+          layout_properties: {grid_position: 'QIZNTB,ORSKYD'}
+          components:
+          - name: label_3_copy_4_copy_4
+            properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Add Bank Names}
+            type: Label
+            layout_properties: {x: 94.98843002319336, y: 0, width: 117.593}
+          - name: image_4_copy_5_copy_4
+            properties: {role: null, vertical_align: center, alt_text: '', spacing_above: small, background: '', horizontal_align: center, source: _/theme/bank (1).png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 34}
+            type: Image
+            layout_properties: {x: 37.99768829345703, y: 0.995361328125, width: 46.9907}
+        event_bindings: {click: link_6_copy_4_click}
     - name: label_1_copy
       properties: {role: null, bold: true, align: center, spacing_above: small, background: '#1d86da', icon: '', underline: false, font: '', icon_align: left, foreground: white, spacing_below: small, visible: true, border: '', italic: true, font_size: 24, tooltip: '', text: Add Bank Account}
       type: Label
