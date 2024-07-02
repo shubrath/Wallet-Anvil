@@ -309,7 +309,7 @@ components:
       - name: card_600
         properties: {role: card, col_widths: '{"XGJIUY":10,"UKQUDN":62,"OOPNSB":7}'}
         type: ColumnPanel
-        layout_properties: {grid_position: 'SDUPHT,LHWPUW AMFBGI,IZENTF', x: 128.26, y: -1.0995330810546875, width: 938.97}
+        layout_properties: {grid_position: 'SDUPHT,LHWPUW AMFBGI,IZENTF', x: 237.2523193359375, y: 10, width: 938.97}
         components:
         - name: label_39
           properties: {text: '  Profile Details', bold: true, font_size: 25, align: left}
