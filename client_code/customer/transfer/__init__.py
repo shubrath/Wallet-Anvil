@@ -185,7 +185,7 @@ class transfer(transferTemplate):
     
         open_form('customer.transfer', user=self.user)
       else:
-        alert(f"payment amount must be atleast 1 {}")
+        alert(f"payment amount must be atleast 1 {cur}")
     def link_8_click(self, **event_args):
       """This method is called when the link is clicked"""
       open_form("customer.wallet",user=self.user)
