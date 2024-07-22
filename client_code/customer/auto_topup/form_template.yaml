@@ -402,9 +402,9 @@ components:
           layout_properties: {grid_position: 'FAEEAP,CCTRHJ'}
           event_bindings: {click: button_5_click}
         - name: card_3
-          properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35}'}
+          properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35,"MPTFGG":25,"DHJDBZ":35}'}
           type: ColumnPanel
-          layout_properties: {grid_position: 'CXKRJI,GATUYD'}
+          layout_properties: {grid_position: 'GTVGZQ,HJDYGX'}
           components:
           - name: label_7
             properties: {align: center, text: Timely Topup, bold: true, font_size: 16, underline: true}
@@ -428,6 +428,14 @@ components:
             properties: {}
             type: TextBox
             layout_properties: {grid_position: 'UHRIUB,VCYUTB'}
+          - type: Label
+            properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '16', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Expiry Date, margin: null}
+            name: label_10
+            layout_properties: {grid_position: 'QXMLIL,MPTFGG'}
+          - type: DatePicker
+            properties: {}
+            name: date_picker_2
+            layout_properties: {grid_position: 'QXMLIL,DHJDBZ'}
           - name: spacer_5_copy_3
             properties: {height: 10.88885498046875}
             type: Spacer

@@ -481,3 +481,9 @@ components:
   - properties: {background: '', col_widths: '{}'}
     type: ColumnPanel
     name: content_panel_1
+- type: Timer
+  properties: {}
+  name: timer_1
+- name: timer_2
+  type: Timer
+  properties: {}

@@ -575,5 +575,110 @@ class customer(customerTemplate):
       open_form("customer",user=self.user)
 
    
-
-   
+  
+    
+    def start_checking(self):
+        self.check_user_data(None)
+  
+        Clock.schedule_interval(self.check_user_data, 20)
+  
+    def check_user_data(self, dt):
+  
+        try:
+            phone = self.user['users_phone']
+            user = app_tables.wallet_users.get(users_phone=phone)
+            if not user:
+                print("Error: User data not found. Please set up your account.")
+                return
+           
+            status = user['users_timely_topup']
+  
+            if user['users_last_auto_topup_time'] is not None:
+                today = datetime.today()
+                formatted_date = today.strftime('%Y-%m-%d')
+                if status and formatted_date <= user['users_timely_topup_expiry_date']:
+                    next_topup_str = user['users_last_auto_topup_time']
+                    next_topup = datetime.strptime(next_topup_str, '%Y-%m-%d %H:%M:%S.%f')
+                    now = datetime.now()
+  
+                    if next_topup > now:
+                        delay = (next_topup - now).total_seconds()
+                    
+                        Clock.schedule_once(self.add_money_to_wallet, delay)
+                    else:
+                        self.schedule_monthly_topup()
+                else:
+                    print("Auto top-up is disabled.")
+            else:
+                today = datetime.today()
+                formatted_date = today.strftime('%Y-%m-%d')
+                if status and formatted_date <= user_data.get('users_timely_topup_expiry_date'):
+                    self.schedule_monthly_topup()
+  
+        except Exception as e:
+            print(e)
+  
+    def schedule_monthly_topup(self):
+        try:
+            self.store = JsonStore('user_data.json')
+            user_data = self.store.get('user')['value']
+  
+            status = user_data.get("users_timely_autotopup")
+            duration_days = None
+            if user_data.get('users_timely_topup_duration') is not None:
+                duration_days = int(user_data.get('users_timely_topup_duration'))
+            today = datetime.today()
+            formatted_date = today.strftime('%Y-%m-%d')
+            if status and duration_days is not None and formatted_date <= user_data.get('users_timely_topup_expiry_date'):
+                now = datetime.now()
+                next_topup = now + timedelta(days=duration_days)
+                delay = (next_topup - now).total_seconds()
+                self.store.put('user', value={
+                    **user_data,
+                    'next_topup': next_topup.strftime('%Y-%m-%d %H:%M:%S.%f')
+                })
+  
+                Clock.schedule_once(self.add_money_to_wallet, delay)
+            else:
+                print("Auto top-up is disabled.")
+        except Exception as e:
+            print(e)
+  
+    def add_money_to_wallet(self, dt):
+  
+        try:
+            self.store = JsonStore('user_data.json')
+            user_data = self.store.get('user')['value']
+            status = user_data.get("users_timely_autotopup")
+  
+            today = datetime.today()
+            formatted_date = today.strftime('%Y-%m-%d')
+            if status and formatted_date <= user_data.get('users_timely_topup_expiry_date'):
+                if self.store.exists('user'):
+                    user_data = self.store.get('user')['value']
+                    amount = user_data.get("users_timely_topup_amount")
+                    phone = user_data.get("users_phone")
+                    currency_type = user_data.get('users_defaultcurrency')
+                    balance_table = app_tables.wallet_users_balance.get(
+                        users_balance_phone=phone,
+                        users_balance_currency_type=currency_type
+                    )
+  
+                    try:
+                        if balance_table is not None:
+                            date = datetime.now()
+                            old_balance = balance_table['users_balance']
+                            new_balance = old_balance + amount
+                            balance_table['users_balance'] = new_balance
+                            balance_table.update()
+                            print(f"New balance: {balance_table['users_balance']}")
+                            users_text = f"{amount} Added Through AutoTopUp"
+                            anvil.server.call('notify', users_text, date, phone, phone)
+                        else:
+                            print("Error: Balance table not found.")
+                    except Exception as e:
+                        print(e)
+  
+                    self.schedule_monthly_topup()
+        except Exception as e:
+            print(e)

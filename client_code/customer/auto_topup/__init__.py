@@ -10,6 +10,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime
 import anvil.http
+from datetime import timezone, timedelta
 class auto_topup(auto_topupTemplate):
     def __init__(self,user=None, **properties):
         # Initialize self.user as a dictionary
@@ -119,62 +120,99 @@ class auto_topup(auto_topupTemplate):
         alert("Please enable the auto-topup switch to proceed.")
       
     def button_6_click(self, **event_args):
-      if self.user['users_auto_topup']== True:
-        from datetime import datetime, timezone
-        current_datetime = datetime.now().replace(tzinfo=timezone.utc)
+        
         frequency = self.drop_down_3.selected_value
-        cur= self.drop_down_2.selected_value
-        money = float(self.text_box_2.text)
-        endpoint = 'convert'
-        api_key = 'a2qfoReWfa7G3GiDHxeI1f9BFXYkZ2wT'
-        # Set base currency and any other parameters 
-        base_currency = 'INR'
-        resp = anvil.http.request(f"https://api.currencybeacon.com/v1/{endpoint}?from={base_currency}&to={cur}&amount={money}&api_key={api_key}", json=True)
-        money_value=resp['response']['value']
-        print(f"Your entered amount is {money_value}")
-        if self.user :
-          # Check if a balance row already exists for the user
-          existing_balance = app_tables.wallet_users_balance.get(users_balance_phone=self.user['users_phone'],users_balance_currency_type=cur)         
-          
-          # Calculate the time interval based on the frequency
-          if frequency == "Every Week":
-              interval_days = 7
-          elif frequency == "Every Month":
-              interval_days = 30 
-          elif frequency == "Every 3 Months":
-              interval_days = 90  
-          elif frequency == "Every 6 Months":
-              interval_days = 180  
-          else:
-              interval_days = 0 
-          
-          # Check if the required time duration has elapsed or if the frequency is different
-          if (self.user['last_auto_topup_time'] is None) or ((current_datetime - self.user['last_auto_topup_time']).days >= interval_days):
-            self.user['users_timely_topup'] = True
-            self.user['users_timely_topup_interval'] = frequency
-            existing_balance['balance'] += money_value
-            new_transaction = app_tables.wallet_users_transaction.add_row(
-                  users_transaction_phone=self.user['users_phone'],
-                  users_transaction_fund=money_value,
-                  users_transaction_date=current_datetime,
-                  users_transaction_type="Auto Topup",
-                  users_transaction_status="Timely-Topup",
-                  users_transaction_currency=cur,
-                  users_transaction_receiver_phone=self.user['users_phone']
-              )
-            self.label_5.text = f"{frequency}-topup payment has been successfully added to your account."
-            # Update the last auto-topup time in user data
-            self.user['users_last_auto_topup_time'] = current_datetime
-            open_form('customer', user=self.user)  
-          else:
-            self.user['users_auto_topup'] = False
-            anvil.alert("Auto-topup is inactive until the required time duration has expired.")
-            print("Your balance is not below the limit")
-            open_form('customer', user=self.user)  
+        if frequency == "Every Week":
+            interval_days = 7
+        elif frequency == "Every Month":
+            interval_days = 30 
+        elif frequency == "Every 3 Months":
+            interval_days = 90  
+        elif frequency == "Every 6 Months":
+            interval_days = 180  
         else:
-          self.label_5.text = "Error: No matching accounts found for the user or invalid account number."
-      else:
-        alert("Please enable the auto-topup switch to proceed.")    
+            interval_days = 0 
+
+        now = datetime.now()
+        next_topup = now + timedelta(days=interval_days)
+
+    
+
+
+        phone = self.user['users_phone']
+        details = app_tables.wallet_users.get(users_phone=phone)
+
+        if details['users_timely_autotopup'] == True:
+            
+            phone = self.user['users_phone']
+
+            user = app_tables.wallet_users.get(users_phone=phone)
+            user['users_timely_topup_duration'] = str(self.selected_duration)
+            user['users_timely_topup_amount'] = int(self.ids.add_amount.text)
+            user['users_timely_topup_expiry_date'] = self.topup_expiry_date
+            user.update()
+           
+
+        else:
+            pass
+      
+
+      # if self.user['users_auto_topup']== True:
+      #   from datetime import datetime, timezone
+      #   current_datetime = datetime.now().replace(tzinfo=timezone.utc)
+      #   frequency = self.drop_down_3.selected_value
+      #   cur= self.drop_down_2.selected_value
+      #   money = float(self.text_box_2.text)
+      #   endpoint = 'convert'
+      #   api_key = 'a2qfoReWfa7G3GiDHxeI1f9BFXYkZ2wT'
+      #   # Set base currency and any other parameters 
+      #   base_currency = 'INR'
+      #   resp = anvil.http.request(f"https://api.currencybeacon.com/v1/{endpoint}?from={base_currency}&to={cur}&amount={money}&api_key={api_key}", json=True)
+      #   money_value=resp['response']['value']
+      #   print(f"Your entered amount is {money_value}")
+      #   if self.user :
+      #     # Check if a balance row already exists for the user
+      #     existing_balance = app_tables.wallet_users_balance.get(users_balance_phone=self.user['users_phone'],users_balance_currency_type=cur)         
+          
+      #     # Calculate the time interval based on the frequency
+      #     if frequency == "Every Week":
+      #         interval_days = 7
+      #     elif frequency == "Every Month":
+      #         interval_days = 30 
+      #     elif frequency == "Every 3 Months":
+      #         interval_days = 90  
+      #     elif frequency == "Every 6 Months":
+      #         interval_days = 180  
+      #     else:
+      #         interval_days = 0 
+          
+      #     # Check if the required time duration has elapsed or if the frequency is different
+      #     if (self.user['last_auto_topup_time'] is None) or ((current_datetime - self.user['last_auto_topup_time']).days >= interval_days):
+      #       self.user['users_timely_topup'] = True
+      #       self.user['users_timely_topup_interval'] = frequency
+      #       existing_balance['balance'] += money_value
+      #       new_transaction = app_tables.wallet_users_transaction.add_row(
+      #             users_transaction_phone=self.user['users_phone'],
+      #             users_transaction_fund=money_value,
+      #             users_transaction_date=current_datetime,
+      #             users_transaction_type="Auto Topup",
+      #             users_transaction_status="Timely-Topup",
+      #             users_transaction_currency=cur,
+      #             users_transaction_receiver_phone=self.user['users_phone']
+      #         )
+      #       self.label_5.text = f"{frequency}-topup payment has been successfully added to your account."
+      #       # Update the last auto-topup time in user data
+      #       self.user['users_last_auto_topup_time'] = current_datetime
+      #       open_form('customer', user=self.user)  
+      #     else:
+      #       self.user['users_auto_topup'] = False
+      #       anvil.alert("Auto-topup is inactive until the required time duration has expired.")
+      #       print("Your balance is not below the limit")
+      #       open_form('customer', user=self.user)  
+      #   else:
+      #     self.label_5.text = "Error: No matching accounts found for the user or invalid account number."
+      # else:
+      #   alert("Please enable the auto-topup switch to proceed.")    
         
     def button_off_click(self, **event_args):
       self.user['users_auto_topup']= False
