@@ -97,6 +97,120 @@ class withdraw(withdrawTemplate):
   def display(self, **event_args):
     acc = self.drop_down_1.selected_value
 
+
+  def top_up_if_balance_is_less(self):
+    # store = JsonStore('user_data.json')
+    # users_details = app_tables.wallet_users.get(users_phone = store['users_phone'])
+    # #
+    # if users_details["users_auto_topup"]:
+
+    phone = self.user['users_phone']
+    
+    users_details = app_tables.wallet_users.get(users_phone=phone)
+    default_primary = users_details['users_default_account']
+    transactions = app_tables.wallet_users_account.get(users_account_number=int(default_primary))
+
+    self.bank_name = transactions['users_account_bank_name']
+    user_table = app_tables.wallet_users.get(users_phone=phone)
+
+    # Check if a bank is selected
+    # if not hasattr(self, 'bank_name') or not self.bank_name:
+    #     self.manager.show_notification('Alert!', 'Please select a bank.')
+    #     return
+    today = datetime.today()
+    formatted_date = today.strftime('%Y-%m-%d')
+
+
+    if user_table['users_minimum_topup'] is True and  formatted_date <= str(user_table['users_auto_topup_expiry_date']):
+        money = user_table['users_minimum_topup_amount']
+        amount = float(money)
+        if amount <= 0 or str(amount).startswith('0'):
+            self.manager.show_notification('Alert!',
+                                            'Please enter amount greater than zero and should not start with zero')
+            return
+        selected_money = int(user_table['users_minimum_topup_amount_below'])
+        date = datetime.now()
+        # currency_dropdown = self.parent.ids.currency_dropdown
+        currency = users_details['users_defaultcurrency']
+        rate_response = self.currency_rate(currency, amount)
+        print(rate_response)
+        try:
+            if 'response' in rate_response and rate_response['meta']['code'] == 200:
+                # Access the 'value' from the 'response' dictionary
+                self.exchange_rate_value = rate_response['response']['value']
+                print(f"The exchange rate value is: {self.exchange_rate_value}")
+        except Exception as e:
+            self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
+
+      
+        phone = self.user['users_phone']
+        balance_table = app_tables.wallet_users_balance.get(users_balance_phone=phone,
+                                                            users_balance_currency_type=currency)
+        print(balance_table)
+
+        try:
+            if balance_table is not None:
+                old_balance = balance_table['users_balance']
+                user_table['users_minimum_topup'] = True
+
+                if old_balance < float(selected_money):
+
+
+
+                    new_balance = old_balance + self.exchange_rate_value
+                    balance_table['users_balance'] = new_balance
+                    balance_table.update()
+                    self.manager.show_notification('Success', 'Minimum-Topup Successful.')
+                    app_tables.wallet_users_transaction.add_row(
+                        users_transaction_receiver_phone=None,
+                        users_transaction_phone=phone,
+                        users_transaction_fund=self.exchange_rate_value,
+                        users_transaction_date=date,
+                        users_transaction_type=f"Auto Topup",
+                        users_transaction_status="Minimum-Topup",
+                        users_transaction_currency=currency,
+                        users_transaction_bank_name=self.bank_name
+                    )
+                    # app = App.get_running_app()
+                    # app.root.current = 'dashboard'
+                    # self.ids.edit_topUp.text = "Edit"
+
+                    users_text = f" {amount} Added Through AutoTopUp"
+                    anvil.server.call('notify', users_text, date, phone, phone)
+                else:
+                    pass
+                    # user_table['users_minimum_topup_amount_below'] = int(selected_money)
+                    # user_table['users_auto_topup_expiry_date'] = self.topup_expiry_date
+                    #
+                    # user_table.update()
+                    # user_table['users_minimum_topup'] = False
+                    # self.manager.show_notification('Success', 'Minimum-Topup Successful.')
+                    # self.ids.edit_topUp.text = "Edit"
+            else:
+                pass
+                # self.manager.show_notification('Alert!', f"Insufficient balance in currency {currency}")
+                # print(self.bank_details_display)
+
+            # app_tables.wallet_users_transaction.add_row(
+            #     users_transaction_receiver_phone=None,
+            #     users_transaction_phone=phone,
+            #     users_transaction_fund=self.exchange_rate_value,
+            #     users_transaction_date=date,
+            #     users_transaction_type=f"Auto Topup",
+            #     users_transaction_status="Minimum-Topup",
+            #     users_transaction_currency=currency,
+            #     users_transaction_bank_name=self.bank_name
+            # )
+        except Exception as e:
+            print(f"Error minimum-topup money: {e}")
+            self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
+            # self.balance.text = ""
+    else:
+        pass
+        # self.manager.show_notification('Alert!', 'Please enable the auto-topup switch to proceed.')
+
+
+
   def button_1_click(self, **event_args):
     current_datetime = datetime.now()
     acc = self.drop_down_1.selected_value
@@ -146,6 +260,7 @@ class withdraw(withdrawTemplate):
                       users_transaction_receiver_phone=self.user['users_phone']
                   )
                   alert("Money withdrawn successfully from the account")
+                  self.top_up_if_balance_is_less()
               else:
                   alert("Withdraw amount is more than the available balance")
   
