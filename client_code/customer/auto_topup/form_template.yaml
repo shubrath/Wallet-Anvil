@@ -329,7 +329,7 @@ components:
         type: Spacer
         layout_properties: {grid_position: 'FRVCAC,CSXXAZ FQZEEB,HGMCIN'}
       - name: card_2
-        properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35}'}
+        properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35,"VUVVZZ":25,"KIJCYS":35}'}
         type: ColumnPanel
         layout_properties: {grid_position: 'FRVCAC,CSXXAZ QYMHRD,GHLBNI'}
         components:
@@ -356,6 +356,14 @@ components:
           type: TextBox
           layout_properties: {grid_position: 'UHRIUB,VCYUTB'}
           event_bindings: {change: text_box_1_change}
+        - type: Label
+          properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '16', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Expiry Date, margin: null}
+          name: label_9
+          layout_properties: {grid_position: 'AUVWIT,VUVVZZ'}
+        - type: DatePicker
+          properties: {role: null, bold: false, format: '', align: right, date: '', placeholder: '', pick_time: false, spacing_above: small, background: '', underline: true, font: '', max_date: '', foreground: '', spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', min_date: '', margin: null}
+          name: date_picker_1
+          layout_properties: {grid_position: 'AUVWIT,KIJCYS'}
         - name: spacer_5
           properties: {height: 10.88885498046875}
           type: Spacer
@@ -387,16 +395,16 @@ components:
         - name: label_4
           properties: {align: center}
           type: Label
-          layout_properties: {grid_position: ''}
+          layout_properties: {grid_position: ',undefined'}
         - name: button_5
           properties: {text: Proceed to add, background: '#2586d0', foreground: 'theme:White', bold: true, font_size: 18}
           type: Button
-          layout_properties: {grid_position: 'TWCHCN,AZSWAX FAEEAP,CCTRHJ'}
+          layout_properties: {grid_position: 'FAEEAP,CCTRHJ'}
           event_bindings: {click: button_5_click}
         - name: card_3
           properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35}'}
           type: ColumnPanel
-          layout_properties: {grid_position: 'TWCHCN,AZSWAX CXKRJI,GATUYD'}
+          layout_properties: {grid_position: 'CXKRJI,GATUYD'}
           components:
           - name: label_7
             properties: {align: center, text: Timely Topup, bold: true, font_size: 16, underline: true}
@@ -455,7 +463,7 @@ components:
         - name: button_6
           properties: {text: Proceed to add, background: '#2586d0', foreground: 'theme:White', bold: true, font_size: 18}
           type: Button
-          layout_properties: {grid_position: 'TWCHCN,AZSWAX RJOVDL,TDKAVW'}
+          layout_properties: {grid_position: 'RJOVDL,TDKAVW'}
           event_bindings: {click: button_6_click}
       - name: spacer_3
         properties: {height: 14.7777099609375}
