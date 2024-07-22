@@ -62,7 +62,7 @@ class auto_topup(auto_topupTemplate):
       self.text_box_2.text = 1000
 
     def button_5_click(self, **event_args):
-      if self.user['users_auto_topup']== True:
+      if self.user['users_auto_topup'] is True:
         current_datetime = datetime.now()
         w_bal = self.drop_down_1.selected_value
         cur= self.drop_down_2.selected_value
@@ -102,8 +102,8 @@ class auto_topup(auto_topupTemplate):
               #open_form('customer_page', user=self.user)
             else:
               # No minimum top-up required
-              self.user['users_minimum_topup'] = False
-               self.user['users_minimum_topup_amount_below']=int(self.drop_down_1.selected_value)
+              self.user['users_minimum_topup'] = 
+              self.user['users_minimum_topup_amount_below']=int(self.drop_down_1.selected_value)
               self.user['users_minimum_topup_amount'] = int(self.text_box_1.text)
               self.user['users_auto_topup_expiry_date'] = self.date_picker_1.date
               anvil.alert("Auto-topup is not required.")
