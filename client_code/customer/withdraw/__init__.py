@@ -9,6 +9,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime
+import anvil.http
 
 class withdraw(withdrawTemplate):
   def __init__(self, user=None, **properties):
@@ -98,12 +99,50 @@ class withdraw(withdrawTemplate):
     acc = self.drop_down_1.selected_value
 
 
-  def top_up_if_balance_is_less(self):
-    # store = JsonStore('user_data.json')
-    # users_details = app_tables.wallet_users.get(users_phone = store['users_phone'])
-    # #
-    # if users_details["users_auto_topup"]:
+  def currency_rate(self, currency_type, money):
+      # Set API Endpoint and access key (replace 'API_KEY' with your actual API key)
+      endpoint = 'convert'
+      api_key = 'a2qfoReWfa7G3GiDHxeI1f9BFXYkZ2wT'
 
+      # Set base currency and any other parameters (replace 'USD' with your desired base currency)
+      base_currency = 'INR'
+      target_currency = currency_type  # Replace with your desired target currency
+      endpoint = 'convert'
+      api_key = 'a2qfoReWfa7G3GiDHxeI1f9BFXYkZ2wT'
+      # Set base currency and any other parameters 
+      # base_currency = 'INR'
+      # resp = anvil.http.request(f"https://api.currencybeacon.com/v1/{endpoint}?from={base_currency}&to={cur}&amount={money}&api_key={api_key}", json=True)
+      # money_value=resp['response']['value']
+      # Build the URL
+      # url = f'https://api.currencybeacon.com/v1/{endpoint}?from={base_currency}&to={currency_type}&amount={money}&api_key={api_key}'
+
+      try:
+          # print(f"API URL: {url}")
+          # Make the request
+          resp = anvil.http.request(f"https://api.currencybeacon.com/v1/{endpoint}?from={base_currency}&to={target_currency}&amount={money}&api_key={api_key}", json=True)
+          money_value=resp['response']['value']# Raise an HTTPError for bad responses
+          
+          # Decode JSON response
+          # exchange_rates = response.json()
+          # print(f"Response: {exchange_rates}")
+
+          return money_value
+      except Exception as e:
+          alert("error occured!!!.", buttons=[("OK", True)], large=True)
+          print(e)
+      # except Exception as e:
+      #     print(e)
+
+      # except anvil.http.request.exceptions.RequestException as err:
+      #     print(f"Request Error: {err}")
+      #     self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
+   
+          # print(f"An unexpected error occurred: {e}")
+          # self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
+
+
+  def top_up_if_balance_is_less(self):
+    exchange_rate_value = None
     phone = self.user['users_phone']
     
     users_details = app_tables.wallet_users.get(users_phone=phone)
@@ -113,10 +152,7 @@ class withdraw(withdrawTemplate):
     self.bank_name = transactions['users_account_bank_name']
     user_table = app_tables.wallet_users.get(users_phone=phone)
 
-    # Check if a bank is selected
-    # if not hasattr(self, 'bank_name') or not self.bank_name:
-    #     self.manager.show_notification('Alert!', 'Please select a bank.')
-    #     return
+
     today = datetime.today()
     formatted_date = today.strftime('%Y-%m-%d')
 
@@ -125,8 +161,7 @@ class withdraw(withdrawTemplate):
         money = user_table['users_minimum_topup_amount']
         amount = float(money)
         if amount <= 0 or str(amount).startswith('0'):
-            self.manager.show_notification('Alert!',
-                                            'Please enter amount greater than zero and should not start with zero')
+                              
             return
         selected_money = int(user_table['users_minimum_topup_amount_below'])
         date = datetime.now()
@@ -135,12 +170,17 @@ class withdraw(withdrawTemplate):
         rate_response = self.currency_rate(currency, amount)
         print(rate_response)
         try:
-            if 'response' in rate_response and rate_response['meta']['code'] == 200:
+            if rate_response:
                 # Access the 'value' from the 'response' dictionary
-                self.exchange_rate_value = rate_response['response']['value']
-                print(f"The exchange rate value is: {self.exchange_rate_value}")
+                exchange_rate_value =rate_response
+                print(f"The exchange rate value is: {exchange_rate_value}")
+            else:
+              alert("error occured!!!.", buttons=[("OK", True)], large=True)
+              
         except Exception as e:
-            self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
+            
+          pass
+            # self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
 
       
         phone = self.user['users_phone']
@@ -157,14 +197,14 @@ class withdraw(withdrawTemplate):
 
 
 
-                    new_balance = old_balance + self.exchange_rate_value
+                    new_balance = old_balance + exchange_rate_value
                     balance_table['users_balance'] = new_balance
                     balance_table.update()
-                    self.manager.show_notification('Success', 'Minimum-Topup Successful.')
+                    # self.manager.show_notification('Success', 'Minimum-Topup Successful.')
                     app_tables.wallet_users_transaction.add_row(
                         users_transaction_receiver_phone=None,
                         users_transaction_phone=phone,
-                        users_transaction_fund=self.exchange_rate_value,
+                        users_transaction_fund=exchange_rate_value,
                         users_transaction_date=date,
                         users_transaction_type=f"Auto Topup",
                         users_transaction_status="Minimum-Topup",
@@ -203,7 +243,8 @@ class withdraw(withdrawTemplate):
             # )
         except Exception as e:
             print(f"Error minimum-topup money: {e}")
-            self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
+            alert("error occured!!!.", buttons=[("OK", True)], large=True)
+            # self.manager.show_notification('Alert!', 'An error occurred. Please try again.')
             # self.balance.text = ""
     else:
         pass

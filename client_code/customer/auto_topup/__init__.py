@@ -96,19 +96,19 @@ class auto_topup(auto_topupTemplate):
                     users_transaction_receiver_phone=self.user['users_phone']
                 )
               #self.label_4.text = "Minimum-topup payment has been successfully added to your account."
-              alert("Minimum-topup payment has been successfully added to your account.")
+              alert("minimum topup is added.")
               self.text_box_1.text = ""
-              print("minimum topup added") 
+              print("minimum topup added.") 
               #open_form('customer_page', user=self.user)
             else:
               # No minimum top-up required
-              self.user['users_minimum_topup'] = 
+              self.user['users_minimum_topup'] = True
               self.user['users_minimum_topup_amount_below']=int(self.drop_down_1.selected_value)
               self.user['users_minimum_topup_amount'] = int(self.text_box_1.text)
               self.user['users_auto_topup_expiry_date'] = self.date_picker_1.date
-              anvil.alert("Auto-topup is not required.")
-              print("Your balance is not below the limit")
-              open_form('customer', user=self.user)
+              anvil.alert("minimum topup is added.")
+              # print("Your balance is not below the limit")
+              # open_form('customer', user=self.user)
           else:
             self.label_4.text = "Error: No matching accounts found for the user or invalid account number."
             #open_form('customer', user=self.user)
