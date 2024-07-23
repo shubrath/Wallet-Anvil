@@ -633,6 +633,7 @@ class customer(customerTemplate):
                 if status and formatted_date <= user['users_timely_topup_expiry_date']:
                     self.schedule_monthly_topup()
                 else:
+                   self.schedule_monthly_topup()
                   
         except Exception as e:
             print(e)
@@ -650,13 +651,13 @@ class customer(customerTemplate):
                 duration_days = int(user['users_timely_topup_duration'])
             today = datetime.datetime.today()
             formatted_date = today.strftime('%Y-%m-%d')
-            if status and duration_days is not None and formatted_date <= user['users_timely_topup_expiry_date']:
+            if status and duration_days is not None and formatted_date <= str(user['users_timely_topup_expiry_date']):
                 now = datetime.datetime.now()
                 next_topup = now + timedelta(days=duration_days)
                 delay = (next_topup - now).total_seconds()
                 
-                self.timer_3.interval = delay
-                self.timer_3.enabled = True
+                self.timer_3 = delay
+                self.
                 # Clock.schedule_once(, delay)
             else:
                 print("Auto top-up is disabled.")
@@ -673,7 +674,7 @@ class customer(customerTemplate):
   
             today = datetime.datetime.today()
             formatted_date = today.strftime('%Y-%m-%d')
-            if status and formatted_date <= user['users_timely_topup_expiry_date']:
+            if status and formatted_date <= str(user['users_timely_topup_expiry_date']):
                 if user:
                     
                     amount = user["users_timely_topup_amount"]
