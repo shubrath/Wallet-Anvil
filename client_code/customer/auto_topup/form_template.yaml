@@ -359,11 +359,11 @@ components:
         - type: Label
           properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '16', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, font_size: null, tooltip: '', text: Expiry Date, margin: null}
           name: label_9
-          layout_properties: {grid_position: 'AUVWIT,VUVVZZ'}
+          layout_properties: {grid_position: 'AUVWIT,VUVVZZ', full_width_row: false}
         - type: DatePicker
-          properties: {role: null, bold: false, format: '', align: right, date: '', placeholder: '', pick_time: false, spacing_above: small, background: '', underline: true, font: '', max_date: '', foreground: '', spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', min_date: '', margin: null}
+          properties: {role: null, bold: false, format: '', align: right, date: '', placeholder: '', pick_time: false, spacing_above: small, background: '', underline: true, font: '', max_date: '', foreground: '', spacing_below: small, visible: true, border: 1px solid, italic: false, enabled: true, font_size: null, tooltip: '', min_date: '', margin: null}
           name: date_picker_1
-          layout_properties: {grid_position: 'AUVWIT,KIJCYS'}
+          layout_properties: {grid_position: 'AUVWIT,KIJCYS', full_width_row: false}
         - name: spacer_5
           properties: {height: 10.88885498046875}
           type: Spacer
@@ -437,7 +437,7 @@ components:
           type: Label
           layout_properties: {grid_position: 'QXMLIL,MPTFGG'}
         - name: date_picker_2
-          properties: {}
+          properties: {role: null, bold: false, format: '', align: left, date: '', placeholder: '', pick_time: false, spacing_above: small, background: '', underline: false, font: '', max_date: '', foreground: '', spacing_below: small, visible: true, border: 1px solid, italic: false, enabled: true, font_size: null, tooltip: '', min_date: '', margin: null}
           type: DatePicker
           layout_properties: {grid_position: 'QXMLIL,DHJDBZ'}
         - name: spacer_5_copy_3
