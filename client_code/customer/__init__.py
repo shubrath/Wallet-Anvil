@@ -12,7 +12,9 @@ import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
 import anvil.users
 from datetime import  timedelta
-
+import schedule
+import time
+        
 class customer(customerTemplate):
     def __init__(self, user=None, password=None, **properties):
         # Initialize the form
@@ -586,9 +588,14 @@ class customer(customerTemplate):
     def start_checking(self):
         print("first ")
 
+       
+        
+        
+        
+        
         while True:
-          
-          self.check_user_data(None)
+            schedule.run_pending()
+            time.sleep(10)
         
   
        
@@ -638,7 +645,7 @@ class customer(customerTemplate):
                   
         except Exception as e:
             print(e)
-  
+    schedule.every(20).seconds.do(check_user_data())
     def schedule_monthly_topup(self):
         try:
             print("user inside")
