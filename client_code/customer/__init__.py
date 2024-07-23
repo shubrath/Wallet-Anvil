@@ -586,8 +586,9 @@ class customer(customerTemplate):
     def start_checking(self):
         print("first ")
 
-      
-        self.check_user_data(None)
+        while True:
+          
+          self.check_user_data(None)
         
   
        
