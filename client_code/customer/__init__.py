@@ -22,7 +22,7 @@ class customer(customerTemplate):
         
         self.user = user
         self.timer_1.enabled = True
-        self.timer_1.interval = 
+        
         self.password = password
         self.link_clicked = True  # changed
         self.notifications()
