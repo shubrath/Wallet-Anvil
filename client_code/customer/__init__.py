@@ -12,7 +12,7 @@ import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
 import anvil.users
 from datetime import  timedelta
-import schedule
+
 import time
         
 class customer(customerTemplate):
@@ -21,7 +21,7 @@ class customer(customerTemplate):
         self.init_components(**properties)
         
         self.user = user
-        self.start_checking()
+        # self.start_checking()
         self.password = password
         self.link_clicked = True  # changed
         self.notifications()
@@ -582,143 +582,143 @@ class customer(customerTemplate):
 
    
   
-    def timer_1_tick(self, **event_args):
-      self.schedule_interval(self.check_user_data)
+    # def timer_1_tick(self, **event_args):
+    #   self.schedule_interval(self.check_user_data)
     
-    def start_checking(self):
-        print("first ")
+    # def start_checking(self):
+    #     print("first ")
 
        
         
         
         
         
-        while True:
-            schedule.run_pending()
-            time.sleep(10)
+    #     while True:
+    #         schedule.run_pending()
+    #         time.sleep(10)
         
   
        
   
-    def check_user_data(self, dt):
+    # def check_user_data(self, dt):
   
-        try:
-            phone = self.user['users_phone']
-            user = app_tables.wallet_users.get(users_phone=phone)
-            if not user:
-                print("Error: User data not found. Please set up your account.")
-                return
+    #     try:
+    #         phone = self.user['users_phone']
+    #         user = app_tables.wallet_users.get(users_phone=phone)
+    #         if not user:
+    #             print("Error: User data not found. Please set up your account.")
+    #             return
            
-            status = user['users_timely_topup']
+    #         status = user['users_timely_topup']
   
-            if user['users_last_auto_topup_time'] is not None:
-                print("user inside4")
-                today = datetime.today()
-                formatted_date = today.strftime('%Y-%m-%d')
-                if status and formatted_date <= user['users_timely_topup_expiry_date']:
-                    next_topup_str = user['users_last_auto_topup_time']
-                    next_topup = datetime.strptime(next_topup_str, '%Y-%m-%d %H:%M:%S.%f')
-                    now = datetime.now()
+    #         if user['users_last_auto_topup_time'] is not None:
+    #             print("user inside4")
+    #             today = datetime.today()
+    #             formatted_date = today.strftime('%Y-%m-%d')
+    #             if status and formatted_date <= user['users_timely_topup_expiry_date']:
+    #                 next_topup_str = user['users_last_auto_topup_time']
+    #                 next_topup = datetime.strptime(next_topup_str, '%Y-%m-%d %H:%M:%S.%f')
+    #                 now = datetime.now()
   
-                    if next_topup > now:
-                        delay = (next_topup - now).total_seconds()
-                        self.timer_2.interval = delay
+    #                 if next_topup > now:
+    #                     delay = (next_topup - now).total_seconds()
+    #                     self.timer_2.interval = delay
                         
-                        # Clock.schedule_once( delay)
-                    else:
-                        self.schedule_monthly_topup()
-                else:
-                    print("Auto top-up is disabled.")
-            else:
+    #                     # Clock.schedule_once( delay)
+    #                 else:
+    #                     self.schedule_monthly_topup()
+    #             else:
+    #                 print("Auto top-up is disabled.")
+    #         else:
 
-                phone = self.user['users_phone']
-                user = app_tables.wallet_users.get(users_phone=phone)
+    #             phone = self.user['users_phone']
+    #             user = app_tables.wallet_users.get(users_phone=phone)
             
-                status = self.user['users_timely_topup']
-                today = datetime.datetime.today()
-                formatted_date = today.strftime('%Y-%m-%d')
-                print("gg",status)
-                if status and formatted_date <= user['users_timely_topup_expiry_date']:
-                    self.schedule_monthly_topup()
-                else:
-                   self.schedule_monthly_topup()
+    #             status = self.user['users_timely_topup']
+    #             today = datetime.datetime.today()
+    #             formatted_date = today.strftime('%Y-%m-%d')
+    #             print("gg",status)
+    #             if status and formatted_date <= user['users_timely_topup_expiry_date']:
+    #                 self.schedule_monthly_topup()
+    #             else:
+    #                self.schedule_monthly_topup()
                   
-        except Exception as e:
-            print(e)
-    schedule.every(20).seconds.do(check_user_data())
-    def schedule_monthly_topup(self):
-        try:
-            print("user inside")
-            phone = self.user['users_phone']
-            user = app_tables.wallet_users.get(users_phone=phone)
+    #     except Exception as e:
+    #         print(e)
+    # schedule.every(20).seconds.do(check_user_data())
+    # def schedule_monthly_topup(self):
+    #     try:
+    #         print("user inside")
+    #         phone = self.user['users_phone']
+    #         user = app_tables.wallet_users.get(users_phone=phone)
   
-            status = user["users_timely_autotopup"]
-            duration_days = None
-            if  user['users_timely_topup_duration'] is not None:
-                print("user inside1")
-                duration_days = int(user['users_timely_topup_duration'])
-            today = datetime.datetime.today()
-            formatted_date = today.strftime('%Y-%m-%d')
-            if status and duration_days is not None and formatted_date <= str(user['users_timely_topup_expiry_date']):
-                now = datetime.datetime.now()
-                next_topup = now + timedelta(days=duration_days)
-                delay = (next_topup - now).total_seconds()
+    #         status = user["users_timely_autotopup"]
+    #         duration_days = None
+    #         if  user['users_timely_topup_duration'] is not None:
+    #             print("user inside1")
+    #             duration_days = int(user['users_timely_topup_duration'])
+    #         today = datetime.datetime.today()
+    #         formatted_date = today.strftime('%Y-%m-%d')
+    #         if status and duration_days is not None and formatted_date <= str(user['users_timely_topup_expiry_date']):
+    #             now = datetime.datetime.now()
+    #             next_topup = now + timedelta(days=duration_days)
+    #             delay = (next_topup - now).total_seconds()
                 
-                self.timer_3 = delay
+    #             self.timer_3 = delay
                
-                # Clock.schedule_once(, delay)
-            else:
-                print("Auto top-up is disabled.")
-        except Exception as e:
-            print(e)
+    #             # Clock.schedule_once(, delay)
+    #         else:
+    #             print("Auto top-up is disabled.")
+    #     except Exception as e:
+    #         print(e)
   
-    def add_money_to_wallet(self, dt):
+    # def add_money_to_wallet(self, dt):
   
-        try:
-            print("user inside3")
-            phone = self.user['users_phone']
-            user = app_tables.wallet_users.get(users_phone=phone)
-            status = user["users_timely_autotopup"]
+    #     try:
+    #         print("user inside3")
+    #         phone = self.user['users_phone']
+    #         user = app_tables.wallet_users.get(users_phone=phone)
+    #         status = user["users_timely_autotopup"]
   
-            today = datetime.datetime.today()
-            formatted_date = today.strftime('%Y-%m-%d')
-            if status and formatted_date <= str(user['users_timely_topup_expiry_date']):
-                if user:
+    #         today = datetime.datetime.today()
+    #         formatted_date = today.strftime('%Y-%m-%d')
+    #         if status and formatted_date <= str(user['users_timely_topup_expiry_date']):
+    #             if user:
                     
-                    amount = user["users_timely_topup_amount"]
-                    # phone = user_data.get("users_phone")
-                    currency_type = user['users_defaultcurrency']
-                    balance_table = app_tables.wallet_users_balance.get(
-                        users_balance_phone=phone,
-                        users_balance_currency_type=currency_type
-                    )
+    #                 amount = user["users_timely_topup_amount"]
+    #                 # phone = user_data.get("users_phone")
+    #                 currency_type = user['users_defaultcurrency']
+    #                 balance_table = app_tables.wallet_users_balance.get(
+    #                     users_balance_phone=phone,
+    #                     users_balance_currency_type=currency_type
+    #                 )
   
-                    try:
-                        if balance_table is not None:
-                            date = datetime.now()
-                            old_balance = balance_table['users_balance']
-                            new_balance = old_balance + amount
-                            balance_table['users_balance'] = new_balance
-                            balance_table.update()
-                            print(f"New balance: {balance_table['users_balance']}")
-                            users_text = f"{amount} Added Through AutoTopUp"
-                            anvil.server.call('notify', users_text, date, phone, phone)
-                        else:
-                            print("Error: Balance table not found.")
-                    except Exception as e:
-                        print(e)
+    #                 try:
+    #                     if balance_table is not None:
+    #                         date = datetime.now()
+    #                         old_balance = balance_table['users_balance']
+    #                         new_balance = old_balance + amount
+    #                         balance_table['users_balance'] = new_balance
+    #                         balance_table.update()
+    #                         print(f"New balance: {balance_table['users_balance']}")
+    #                         users_text = f"{amount} Added Through AutoTopUp"
+    #                         anvil.server.call('notify', users_text, date, phone, phone)
+    #                     else:
+    #                         print("Error: Balance table not found.")
+    #                 except Exception as e:
+    #                     print(e)
   
-                    self.schedule_monthly_topup()
-        except Exception as e:
-            print(e)
+    #                 self.schedule_monthly_topup()
+    #     except Exception as e:
+    #         print(e)
 
-    def timer_2_tick(self, **event_args):
-      self.add_money_to_wallet()
-      """This method is called Every [interval] secon. Does not trigger if [interval] is 0."""
-      pass
+    # def timer_2_tick(self, **event_args):
+    #   self.add_money_to_wallet()
+    #   """This method is called Every [interval] secon. Does not trigger if [interval] is 0."""
+    #   pass
 
-    def timer_3_tick(self, **event_args):
-      self.add_money_to_wallet()
-      pass
+    # def timer_3_tick(self, **event_args):
+    #   self.add_money_to_wallet()
+    #   pass
 
   

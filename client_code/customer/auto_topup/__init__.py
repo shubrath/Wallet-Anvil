@@ -22,14 +22,14 @@ class auto_topup(auto_topupTemplate):
       currencies = anvil.server.call('get_user_currency', self.user['users_phone'])
       self.drop_down_2.items= [str(row['users_balance_currency_type']) for row in currencies]
       self.display()
-      self.card_2.visible = True
+      self.card_2.visible =False
       self.button_5.visible=False
       self.label_4.visible=False
-      self.card_3.visible = True
+      self.card_3.visible = False
       self.button_6.visible= False
       self.label_5.visible=False
       self.button_off_visible = False
-      self.button_on_visible= True
+      self.button_on_visible= False
       if self.user['users_auto_topup'] is True:
         self.button_on.visible= False
       else:
@@ -255,7 +255,7 @@ class auto_topup(auto_topupTemplate):
       self.card_3.visible = True
       self.button_6.visible = True
       self.label_5.visible= True
-      # self.card_2.visible = False
+      self.card_2.visible = False
       self.button_5.visible = False
       self.label_4.visible= False
 
