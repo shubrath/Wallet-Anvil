@@ -22,15 +22,15 @@ class auto_topup(auto_topupTemplate):
       currencies = anvil.server.call('get_user_currency', self.user['users_phone'])
       self.drop_down_2.items= [str(row['users_balance_currency_type']) for row in currencies]
       self.display()
-      self.card_2.visible = False
+      self.card_2.visible = True
       self.button_5.visible=False
       self.label_4.visible=False
-      self.card_3.visible = False
+      self.card_3.visible = True
       self.button_6.visible= False
       self.label_5.visible=False
       self.button_off_visible = False
       self.button_on_visible= True
-      if self.user['users_auto_topup']== True:
+      if self.user['users_auto_topup'] is True:
         self.button_on.visible= False
       else:
         self.button_off.visible= False
@@ -135,8 +135,8 @@ class auto_topup(auto_topupTemplate):
 
         now = datetime.now()
         next_topup = now + timedelta(days=interval_days)
-
-    
+        money = float(self.text_box_2.text)
+        topup_expiry_date = self.date_picker_2.date
 
 
         phone = self.user['users_phone']
@@ -147,9 +147,9 @@ class auto_topup(auto_topupTemplate):
             phone = self.user['users_phone']
 
             user = app_tables.wallet_users.get(users_phone=phone)
-            user['users_timely_topup_duration'] = str(self.selected_duration)
-            user['users_timely_topup_amount'] = int(self.ids.add_amount.text)
-            user['users_timely_topup_expiry_date'] = self.topup_expiry_date
+            user['users_timely_topup_duration'] = str(interval_days)
+            user['users_timely_topup_amount'] = int(money)
+            user['users_timely_topup_expiry_date'] = topup_expiry_date
             user.update()
            
 
@@ -255,7 +255,7 @@ class auto_topup(auto_topupTemplate):
       self.card_3.visible = True
       self.button_6.visible = True
       self.label_5.visible= True
-      self.card_2.visible = False
+      # self.card_2.visible = False
       self.button_5.visible = False
       self.label_4.visible= False
 

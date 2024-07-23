@@ -5,17 +5,21 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import datetime
+# from datetime import datetime
 from anvil import *
 import anvil.facebook.auth
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
 import anvil.users
+from datetime import  timedelta
 
 class customer(customerTemplate):
     def __init__(self, user=None, password=None, **properties):
         # Initialize the form
         self.init_components(**properties)
+        
         self.user = user
+        self.start_checking()
         self.password = password
         self.link_clicked = True  # changed
         self.notifications()
@@ -576,11 +580,17 @@ class customer(customerTemplate):
 
    
   
+    def timer_1_tick(self, **event_args):
+      self.schedule_interval(self.check_user_data)
     
     def start_checking(self):
+        print("first ")
+              
         self.check_user_data(None)
+        self.timer_1.interval = 20
+        self.timer_1.enabled = True
   
-        Clock.schedule_interval(self.check_user_data, 20)
+       
   
     def check_user_data(self, dt):
   
@@ -594,6 +604,7 @@ class customer(customerTemplate):
             status = user['users_timely_topup']
   
             if user['users_last_auto_topup_time'] is not None:
+                print("user inside4")
                 today = datetime.today()
                 formatted_date = today.strftime('%Y-%m-%d')
                 if status and formatted_date <= user['users_timely_topup_expiry_date']:
@@ -603,42 +614,50 @@ class customer(customerTemplate):
   
                     if next_topup > now:
                         delay = (next_topup - now).total_seconds()
-                    
-                        Clock.schedule_once(self.add_money_to_wallet, delay)
+                        self.timer_2.interval = delay
+                        
+                        # Clock.schedule_once( delay)
                     else:
                         self.schedule_monthly_topup()
                 else:
                     print("Auto top-up is disabled.")
             else:
-                today = datetime.today()
+
+                phone = self.user['users_phone']
+                user = app_tables.wallet_users.get(users_phone=phone)
+            
+                status = self.user['users_timely_topup']
+                today = datetime.datetime.today()
                 formatted_date = today.strftime('%Y-%m-%d')
-                if status and formatted_date <= user_data.get('users_timely_topup_expiry_date'):
+                print("gg",status)
+                if status and formatted_date <= user['users_timely_topup_expiry_date']:
                     self.schedule_monthly_topup()
-  
+                else:
+                  
         except Exception as e:
             print(e)
   
     def schedule_monthly_topup(self):
         try:
-            self.store = JsonStore('user_data.json')
-            user_data = self.store.get('user')['value']
+            print("user inside")
+            phone = self.user['users_phone']
+            user = app_tables.wallet_users.get(users_phone=phone)
   
-            status = user_data.get("users_timely_autotopup")
+            status = user["users_timely_autotopup"]
             duration_days = None
-            if user_data.get('users_timely_topup_duration') is not None:
-                duration_days = int(user_data.get('users_timely_topup_duration'))
-            today = datetime.today()
+            if  user['users_timely_topup_duration'] is not None:
+                print("user inside1")
+                duration_days = int(user['users_timely_topup_duration'])
+            today = datetime.datetime.today()
             formatted_date = today.strftime('%Y-%m-%d')
-            if status and duration_days is not None and formatted_date <= user_data.get('users_timely_topup_expiry_date'):
-                now = datetime.now()
+            if status and duration_days is not None and formatted_date <= user['users_timely_topup_expiry_date']:
+                now = datetime.datetime.now()
                 next_topup = now + timedelta(days=duration_days)
                 delay = (next_topup - now).total_seconds()
-                self.store.put('user', value={
-                    **user_data,
-                    'next_topup': next_topup.strftime('%Y-%m-%d %H:%M:%S.%f')
-                })
-  
-                Clock.schedule_once(self.add_money_to_wallet, delay)
+                
+                self.timer_3.interval = delay
+                self.timer_3.enabled = True
+                # Clock.schedule_once(, delay)
             else:
                 print("Auto top-up is disabled.")
         except Exception as e:
@@ -647,18 +666,19 @@ class customer(customerTemplate):
     def add_money_to_wallet(self, dt):
   
         try:
-            self.store = JsonStore('user_data.json')
-            user_data = self.store.get('user')['value']
-            status = user_data.get("users_timely_autotopup")
+            print("user inside3")
+            phone = self.user['users_phone']
+            user = app_tables.wallet_users.get(users_phone=phone)
+            status = user["users_timely_autotopup"]
   
-            today = datetime.today()
+            today = datetime.datetime.today()
             formatted_date = today.strftime('%Y-%m-%d')
-            if status and formatted_date <= user_data.get('users_timely_topup_expiry_date'):
-                if self.store.exists('user'):
-                    user_data = self.store.get('user')['value']
-                    amount = user_data.get("users_timely_topup_amount")
-                    phone = user_data.get("users_phone")
-                    currency_type = user_data.get('users_defaultcurrency')
+            if status and formatted_date <= user['users_timely_topup_expiry_date']:
+                if user:
+                    
+                    amount = user["users_timely_topup_amount"]
+                    # phone = user_data.get("users_phone")
+                    currency_type = user['users_defaultcurrency']
                     balance_table = app_tables.wallet_users_balance.get(
                         users_balance_phone=phone,
                         users_balance_currency_type=currency_type
@@ -682,3 +702,14 @@ class customer(customerTemplate):
                     self.schedule_monthly_topup()
         except Exception as e:
             print(e)
+
+    def timer_2_tick(self, **event_args):
+      self.add_money_to_wallet()
+      """This method is called Every [interval] secon. Does not trigger if [interval] is 0."""
+      pass
+
+    def timer_3_tick(self, **event_args):
+      self.add_money_to_wallet()
+      pass
+
+  
