@@ -21,6 +21,8 @@ class customer(customerTemplate):
         self.init_components(**properties)
         
         self.user = user
+       
+        self.timer_1.interval = 60
         self.timer_1.enabled = True
         
         self.password = password
@@ -174,6 +176,13 @@ class customer(customerTemplate):
             if row['users_balance_currency_type'] == currency_type:
                 return row['users_balance']  # Return the balance for INR
         return '0'  # Fallback in case the currency_type is not found
+
+  
+    def timer_1_tick(self, **event_args):
+        
+        # Call the background task to check and perform top-ups
+        anvil.server.call('check_and_topup_users',self.user['users_phone'])
+    
 
     def link_10_click(self, **event_args):
         """This method is called when the link is clicked"""

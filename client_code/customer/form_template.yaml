@@ -482,8 +482,9 @@ components:
     type: ColumnPanel
     name: content_panel_1
 - type: Timer
-  properties: {}
+  properties: {interval: 1}
   name: timer_1
+  event_bindings: {tick: timer_1_tick}
 - name: timer_2
   type: Timer
   properties: {}

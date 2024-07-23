@@ -151,6 +151,7 @@ class auto_topup(auto_topupTemplate):
             user['users_timely_topup_amount'] = int(money)
             user['users_timely_topup_expiry_date'] = topup_expiry_date
             user.update()
+            alert("minimum topup is added.")
            
 
         else:

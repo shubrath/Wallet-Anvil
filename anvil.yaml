@@ -320,6 +320,9 @@ db_schema:
     - name: users_timely_autotopup
       admin_ui: {width: 200, order: 31}
       type: bool
+    - name: users_next_autotopup_time
+      admin_ui: {width: 200, order: 32}
+      type: date
     title: wallet_users
   wallet_admins_add_currency:
     title: wallet_admins_add_currency
