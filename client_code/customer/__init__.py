@@ -21,7 +21,8 @@ class customer(customerTemplate):
         self.init_components(**properties)
         
         self.user = user
-        # self.start_checking()
+        self.timer_1.enabled = True
+        self.timer_1.interval = 
         self.password = password
         self.link_clicked = True  # changed
         self.notifications()
@@ -186,6 +187,10 @@ class customer(customerTemplate):
         self.plot_1.data = fig.data
         self.plot_1.layout = fig.layout
 
+
+    def timer_1_tick(self, **event_args):
+        # Call the background task to check and perform top-ups
+        anvil.server.call('check_and_topup_users')
     
     def greet_based_on_time(self):
         from datetime import datetime
