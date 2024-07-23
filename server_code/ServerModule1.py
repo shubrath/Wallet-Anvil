@@ -22,7 +22,7 @@ import requests
 
 @anvil.server.callable
 def check_and_topup_users(phone):
-  print("hre")
+
     
   today = datetime.now().date()
   user = app_tables.wallet_users.get(users_phone=phone)
