@@ -585,10 +585,10 @@ class customer(customerTemplate):
     
     def start_checking(self):
         print("first ")
-              
+
+      
         self.check_user_data(None)
-        self.timer_1.interval = 20
-        self.timer_1.enabled = True
+        
   
        
   
@@ -657,7 +657,7 @@ class customer(customerTemplate):
                 delay = (next_topup - now).total_seconds()
                 
                 self.timer_3 = delay
-                self.
+               
                 # Clock.schedule_once(, delay)
             else:
                 print("Auto top-up is disabled.")
