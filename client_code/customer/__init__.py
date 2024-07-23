@@ -190,6 +190,7 @@ class customer(customerTemplate):
 
     def timer_1_tick(self, **event_args):
         # Call the background task to check and perform top-ups
+        print("hello")
         anvil.server.call('check_and_topup_users')
     
     def greet_based_on_time(self):
