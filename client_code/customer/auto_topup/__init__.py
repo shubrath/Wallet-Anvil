@@ -354,12 +354,17 @@ class auto_topup(auto_topupTemplate):
       return formatted_value
 
     def button_off_copy_click(self, **event_args):
-      """This method is called when the button is clicked"""
-      pass
+      self.user['users_minimum_topup']= False
+      self.button_off_copy.
 
     def button_on_copy_click(self, **event_args):
-      """This method is called when the button is clicked"""
-      pass
+      self.user['users_minimum_topup']= True
+
+    def switch_on_timely_topup(self, **event_args):
+      self.user['users_timely_autotopup']= True
+      
+    def switch_off_timely_topup(self, **event_args):
+      self.user['users_timely_autotopup']= False
 
 
    
