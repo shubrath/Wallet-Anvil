@@ -40,6 +40,9 @@ def check_and_topup_users(phone):
           balance['users_balance'] += user['users_timely_topup_amount']  # Add the top-up amount (change this value as needed)
           user['users_next_autotopup_time'] = next_topup_date  # Update the last top-up date
           user.update()
+          users_text = f" {user['users_timely_topup_amount']} Added Through AutoTopUp"
+          time = datetime.now().date()
+          anvil.server.call('notify', users_text, time, phone, phone)
       else:
         user['users_next_autotopup_time'] = next_topup_date
         user.update()
