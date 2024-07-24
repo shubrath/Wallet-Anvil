@@ -354,21 +354,25 @@ class auto_topup(auto_topupTemplate):
       return formatted_value
 
     def button_off_copy_click(self, **event_args):
-      self.user['users_minimum_topup']= False
-      self.button_off_copy.visible = False
+          self.user['users_minimum_topup']= False
+          self.button_off_copy.visible = False
+          self.button_on_copy.visible = True
+          
 
     def button_on_copy_click(self, **event_args):
       self.user['users_minimum_topup']= True
       self.button_on_copy.visible = False
+      self.button_off_copy.visible = True
 
     def switch_on_timely_topup(self, **event_args):
-      self.user['users_timely_autotopup']= True
+      self.user['users_timely_autotopup']= False
       self.button_off_copy_2.visible = False
+      self.button_on_copy_2.visible = True
       
     def switch_off_timely_topup(self, **event_args):
-      self.user['users_timely_autotopup']= False
-      self.button_on_copy_2.visible 
-
+      self.user['users_timely_autotopup']= True
+      self.button_off_copy_2.visible = True
+      self.button_on_copy_2.visible = False
 
    
  
