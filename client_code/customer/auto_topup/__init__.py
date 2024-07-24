@@ -353,6 +353,14 @@ class auto_topup(auto_topupTemplate):
   
       return formatted_value
 
+    def button_off_copy_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      pass
+
+    def button_on_copy_click(self, **event_args):
+      """This method is called when the button is clicked"""
+      pass
+
 
    
  

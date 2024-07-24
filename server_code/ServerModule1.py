@@ -34,7 +34,7 @@ def check_and_topup_users(phone):
   balance = app_tables.wallet_users_balance.get(users_balance_phone = phone)
   if  users_topup_duration is not None and user['users_timely_topup'] is not False and today <= user['users_timely_topup_expiry_date'] :
       next_topup_date = today+timedelta(days = users_topup_duration)
-      print("hello")
+      
       if today >= next_topup_date:
           # Perform the top-up
           balance['users_balance'] += user['users_timely_topup_amount']  # Add the top-up amount (change this value as needed)

@@ -22,7 +22,7 @@ class customer(customerTemplate):
         
         self.user = user
        
-        self.timer_1.interval = 60
+        self.timer_1.interval = 660
         self.timer_1.enabled = True
         
         self.password = password

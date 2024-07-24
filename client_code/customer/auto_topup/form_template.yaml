@@ -329,7 +329,7 @@ components:
         type: Spacer
         layout_properties: {grid_position: 'FRVCAC,CSXXAZ FQZEEB,HGMCIN'}
       - name: card_2
-        properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35,"VUVVZZ":25,"KIJCYS":35}'}
+        properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35,"VUVVZZ":25,"KIJCYS":35,"NSZRUW":50,"BBJBOS":10}'}
         type: ColumnPanel
         layout_properties: {grid_position: 'FRVCAC,CSXXAZ QYMHRD,GHLBNI'}
         components:
@@ -337,6 +337,33 @@ components:
           properties: {align: center, text: Minimum Balance Topup, bold: true, font_size: 16, underline: true}
           type: Label
           layout_properties: {grid_position: 'UUUFKL,NSZRUW'}
+        - type: XYPanel
+          properties: {height: 87, width: 157.002}
+          name: xy_panel_1
+          layout_properties: {grid_position: 'UUUFKL,BBJBOS'}
+          components:
+          - name: button_off_copy
+            properties: {text: 'on', icon: 'fa:toggle-on', foreground: '#000000', bold: true, align: center, background: '#d9e6f2'}
+            type: Button
+            layout_properties:
+              col_widths: {}
+              grid_position: UUUFKL,QMFQYI
+              x: -1.331000000000131
+              y: 1.6087564941406072
+              width: 148.322
+            event_bindings: {click: button_off_copy_click}
+          - name: button_on_copy
+            properties:
+              text: |
+                off
+              icon: fa:toggle-off
+              foreground: '#000000'
+              bold: true
+              background: '#d9e6f2'
+              font_size: 13
+            type: Button
+            layout_properties: {grid_position: 'UUUFKL,PZQSFM', x: 10, y: 47.59259033203125, width: 132.836}
+            event_bindings: {click: button_on_copy_click}
         - name: label_2
           properties: {text: When wallet balance goes below, bold: true, font_size: 16}
           type: Label
@@ -406,14 +433,47 @@ components:
         type: Spacer
         layout_properties: {grid_position: 'FRVCAC,CSXXAZ HDJETS,JZCVMZ'}
       - name: card_3
-        properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35,"MPTFGG":25,"DHJDBZ":35}', spacing_above: small, background: '', wrap_on: mobile, col_spacing: medium, foreground: '', spacing_below: small, visible: true, border: '', tooltip: '', spacing: null}
+        properties: {role: null, col_widths: '{"HONYFV":25,"OSGMXY":35,"XSMVAK":25,"VCYUTB":35,"MPTFGG":25,"DHJDBZ":35,"ZDGPOT":50,"HTGEIH":10}', spacing_above: small, background: '', wrap_on: mobile, col_spacing: medium, foreground: '', spacing_below: small, visible: true, border: '', tooltip: '', spacing: null}
         type: ColumnPanel
         layout_properties: {grid_position: 'FRVCAC,CSXXAZ HDJETS,JZCVMZ FYXMJF,EURNHJ'}
         components:
         - name: label_7
           properties: {align: center, text: Timely Topup, bold: true, font_size: 16, underline: true}
           type: Label
-          layout_properties: {grid_position: 'UUUFKL,NSZRUW'}
+          layout_properties: {grid_position: 'UTUSZY,ZDGPOT'}
+        - type: XYPanel
+          properties: {height: 78, width: 135.002}
+          name: xy_panel_1_copy_2
+          layout_properties:
+            col_widths: {}
+            grid_position: UTUSZY,HTGEIH
+          components:
+          - name: button_off_copy_2
+            properties: {text: 'on', icon: 'fa:toggle-on', foreground: '#000000', bold: true, align: center, background: '#d9e6f2'}
+            type: Button
+            layout_properties:
+              col_widths: {}
+              grid_position: UUUFKL,QMFQYI
+              x: -1.331000000000131
+              y: 1.6087564941406072
+              width: 148.322
+            event_bindings: {click: button_off_copy_click}
+          - name: button_on_copy_2
+            properties:
+              text: |
+                off
+              icon: fa:toggle-off
+              foreground: '#000000'
+              bold: true
+              background: '#d9e6f2'
+              font_size: 13
+            type: Button
+            layout_properties: {grid_position: 'UUUFKL,PZQSFM', x: 10, y: 47.59259033203125, width: 125.83600000000001}
+            event_bindings: {click: button_on_copy_click}
+        - type: Spacer
+          properties: {height: 13}
+          name: spacer_6
+          layout_properties: {grid_position: 'GYNGDS,YYPCEW'}
         - name: label_2_copy_2
           properties: {text: When wallet balance should be automatically added, bold: true, font_size: 16}
           type: Label
