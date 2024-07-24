@@ -122,44 +122,47 @@ class auto_topup(auto_topupTemplate):
         alert("Please enable the auto-topup switch to proceed.")
       
     def button_6_click(self, **event_args):
-        
-        frequency = self.drop_down_3.selected_value
-        if frequency == "Every Week":
-            interval_days = 7
-        elif frequency == "Every Month":
-            interval_days = 30 
-        elif frequency == "Every 3 Months":
-            interval_days = 90  
-        elif frequency == "Every 6 Months":
-            interval_days = 180  
-        else:
-            interval_days = 0 
-
-        now = datetime.now()
-        next_topup = now + timedelta(days=interval_days)
-        money = float(self.text_box_2.text)
-        topup_expiry_date = self.date_picker_2.date
-
-
-        phone = self.user['users_phone']
-        details = app_tables.wallet_users.get(users_phone=phone)
-
-        if details['users_auto_topup'] == True:
-              if details['users_timely_autotopup'] == True:
-                  phone = self.user['users_phone']
       
-                  user = app_tables.wallet_users.get(users_phone=phone)
-                  user['users_timely_topup_duration'] = str(interval_days)
-                  user['users_timely_topup_amount'] = int(money)
-                  user['users_timely_topup_expiry_date'] = topup_expiry_date
-                  user.update()
-                  alert("timely topup is added.")
-           
+      phone = self.user['users_phone']
+      details = app_tables.wallet_users.get(users_phone=phone)
+      if details['users_auto_topup'] == True:
+          if details['users_timely_autotopup'] == True:  
+              frequency = self.drop_down_3.selected_value
+              if frequency == "Every Week":
+                  interval_days = 7
+              elif frequency == "Every Month":
+                  interval_days = 30 
+              elif frequency == "Every 3 Months":
+                  interval_days = 90  
+              elif frequency == "Every 6 Months":
+                  interval_days = 180  
               else:
-                alert("Please enable the timely auto-topup switch to proceed.")
-                
-        else:
-          alert("Please enable the auto-topup switch to proceed.")
+                  interval_days = 0 
+      
+              now = datetime.now()
+              next_topup = now + timedelta(days=interval_days)
+              money = float(self.text_box_2.text)
+              topup_expiry_date = self.date_picker_2.date
+      
+      
+              phone = self.user['users_phone']
+              details = app_tables.wallet_users.get(users_phone=phone)
+      
+      
+              phone = self.user['users_phone']
+      
+              user = app_tables.wallet_users.get(users_phone=phone)
+              user['users_timely_topup_duration'] = str(interval_days)
+              user['users_timely_topup_amount'] = int(money)
+              user['users_timely_topup_expiry_date'] = topup_expiry_date
+              user.update()
+              alert("timely topup is added.")
+        
+          else:
+            alert("Please enable the timely auto-topup switch to proceed.")
+            
+      else:
+            alert("Please enable the auto-topup switch to proceed.")
             
       
 
@@ -371,23 +374,27 @@ class auto_topup(auto_topupTemplate):
       return formatted_value
 
     def button_off_copy_click(self, **event_args):
-          self.user['users_minimum_topup']= False
-          self.button_off_copy.visible = False
-          self.button_on_copy.visible = True
+      self.user['users_minimum_topup']= False
+      self.user.update()
+      self.button_off_copy.visible = False
+      self.button_on_copy.visible = True
           
 
     def button_on_copy_click(self, **event_args):
       self.user['users_minimum_topup']= True
+      self.user.update()
       self.button_on_copy.visible = False
       self.button_off_copy.visible = True
 
     def switch_on_timely_topup(self, **event_args):
       self.user['users_timely_autotopup']= False
+      self.user.update()
       self.button_off_copy_2.visible = False
       self.button_on_copy_2.visible = True
       
     def switch_off_timely_topup(self, **event_args):
       self.user['users_timely_autotopup']= True
+      self.user.update()
       self.button_off_copy_2.visible = True
       self.button_on_copy_2.visible = False
 
