@@ -241,16 +241,28 @@ class auto_topup(auto_topupTemplate):
       open_form('customer',user=self.user)
 
     def minimum_balance_topup_click(self, **event_args):
-      self.minimum_balance_topup.enabled=True
-      self.timely_topup.enabled=False
-      self.card_2.visible = True
-      self.button_5.visible = True
-      self.label_4.visible= True
-      self.card_3.visible = False
-      self.button_6.visible = False
-      self.label_5.visible=False
+          if self.user['users_minimum_topup']:
+            self.button_off_copy.visible = True
+            self.button_on_copy.visible = False
+          else:
+            self.button_on_copy.visible = True
+            self.button_off_copy.visible = False
+          self.minimum_balance_topup.enabled=True
+          self.timely_topup.enabled=False
+          self.card_2.visible = True
+          self.button_5.visible = True
+          self.label_4.visible= True
+          self.card_3.visible = False
+          self.button_6.visible = False
+          self.label_5.visible=False
 
     def timely_topup_click(self, **event_args):
+      if self.user['users_timely_autotopup']:
+        self.button_off_copy_2.visible = True
+        self.button_on_copy_2.visible = False
+      else:
+        self.button_on_copy_2.visible = True
+        self.button_off_copy_2.visible = False
       self.timely_topup.enabled=True
       self.minimum_balance_topup.enabled=False
       self.card_3.visible = True
